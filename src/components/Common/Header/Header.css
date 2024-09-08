@@ -1,0 +1,24 @@
+/* Mobile Sidebar menu */
+.sidebar-menu {
+  background: #fff;
+  position: fixed;
+  padding: 15px;
+  z-index: 150;
+  height: 100%;
+  left: 0;
+  right: auto;
+  top: 0;
+  display: block;
+  box-shadow: -1px 0 2px rgba(0, 0, 0, 0.1);
+  transition: all 0.5s cubic-bezier(0.99, 0.95, 0.49, 1.03);
+  transform: translateX(-100%);
+}
+
+.is-open {
+    
+  z-index: 990;
+  padding-top: 15px;
+  overflow: scroll;
+  transform: translateX(0);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+}

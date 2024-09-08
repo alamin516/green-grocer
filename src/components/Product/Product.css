@@ -1,0 +1,69 @@
+.featured-product-slider .slick-slide {
+    padding: 0px 15px;
+  }
+  
+  .featured-product-slider .product-slider-arrow {
+    position: absolute;
+    right: 0;
+    height: 26px;
+    width: 30px;
+    font-size: 0;
+    padding: 0;
+    background: #f5f5f5;
+    border: 1px solid #f5f5f5;
+    opacity: 1;
+    box-shadow: none;
+  }
+  
+  .featured-product-slider .product-slider-arrow svg {
+    width: 12px;
+    height: 12px;
+    line-height: 26px;
+    color: #000;
+  }
+  
+  .featured-product-slider .product-slider-arrow:disabled,
+  .featured-product-slider .product-slider-arrow:disabled svg {
+    color: #ddd;
+    cursor: pointer;
+  }
+  
+  .featured-product-slider .arrow-left {
+    border-radius: 25px 0 0 25px;
+    right: 60px;
+  }
+  .featured-product-slider .arrow-right {
+    border-radius: 0 25px 25px 0;
+    right: 30px;
+  }
+  
+
+  /* Product Card */
+  .featured-product-slider .image{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    max-height: 100%;
+    margin: auto;
+    object-fit: contain;
+    font-family: 'object-fit: contain';
+  }
+
+
+  /* Add To Cart */
+.add-to-cart a:after {
+  background: #fff none repeat scroll 0 0;
+  content: "";
+  height: 100%;
+  left: 0;
+  opacity: .2;
+  position: absolute;
+  top: 0;
+  width: 0;
+  transition: .5s ease-in-out
+}
+
+.add-cart-link:hover:after{
+  width: 100%;
+}
