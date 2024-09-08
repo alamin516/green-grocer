@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import "./Product.css";
 import Slider from "react-slick";
+import "./Product.css";
 
 import {
   Add,
@@ -10,14 +10,16 @@ import {
   RemoveRedEye,
   Sync,
 } from "@mui/icons-material";
+import { Link } from "react-router-dom";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
-import { Link } from "react-router-dom";
 import Ratings from "../Common/Ratings";
+import QuickViewProduct from "../UI/Modals/QuickViewProduct";
 
 const ProductSlider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [products, setProducts] = useState([]);
+  const [openQuickView,setOpenQuickView]=useState(false);
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -130,6 +132,9 @@ const ProductSlider = () => {
   };
 
   return (
+    <>
+      
+   
     <div className="featured-product-slider w-full lg:mb-10 relative">
       <div className="1500px:w-[1430px] mx-auto">
         {/* Heading */}
@@ -281,7 +286,7 @@ const ProductSlider = () => {
                         <span className="absolute left-0 top-0 bottom-0 m-auto w-full h-[18px] border-x border-[#e5e5e5]"></span>
                       </button>
 
-                      <button className="w-10 h-9 leading-9 hover:text-[#111] text-[21px] text-[#888]">
+                      <button onClick={()=>setOpenQuickView(true)} className="w-10 h-9 leading-9 hover:text-[#111] text-[21px] text-[#888]">
                         <RemoveRedEye
                           style={{ height: "21px", lineHeight: "36px" }}
                         />
@@ -295,7 +300,12 @@ const ProductSlider = () => {
         </Slider>
         {/* Slider End */}
       </div>
+      
     </div>
+    {
+        openQuickView && <QuickViewProduct/>
+      }
+    </>
   );
 };
 
