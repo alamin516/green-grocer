@@ -131,6 +131,8 @@ const ProductSlider = () => {
     ],
   };
 
+  console.log(openQuickView)
+
   return (
     <>
       
@@ -303,7 +305,7 @@ const ProductSlider = () => {
       
     </div>
     {
-        openQuickView && <QuickViewProduct/>
+        openQuickView && <QuickViewProduct setOpenQuickView={setOpenQuickView}/>
       }
     </>
   );
