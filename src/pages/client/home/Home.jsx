@@ -1,6 +1,7 @@
 import BannerSection from "../../../components/Banner/BannerSection";
 import OfferBanner from "../../../components/Banner/OfferBanner";
 import SubBanner from "../../../components/Banner/SubBanner";
+import BestSellers from "../../../components/BestSellers/BestSellers";
 import CategorySlide from "../../../components/Category/CategorySlide";
 import ProductSlider from "../../../components/Product/ProductSlider";
 import SEO from "../../../components/Seo";
@@ -20,6 +21,7 @@ function Home() {
       <CategorySlide />
       <SubBanner/>
       <ProductSlider/>
+      <BestSellers/>
     </>
   );
 }
