@@ -49,7 +49,7 @@ const Header = () => {
         className={`fixed inset-0 flex items-center justify-center bg-white z-[99999] transition-all duration-500 transform ${
           loading
             ? "opacity-100 scale-100"
-            : "opacity-0 scale-0 pointer-events-none"
+            : "opacity-0 scale-100 pointer-events-none"
         }`}
       >
         <img src={Loading} alt="loading" />
