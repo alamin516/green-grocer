@@ -12,11 +12,11 @@ import {
   ShoppingCart
 } from "@mui/icons-material";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Loading from "../../../assets/images/loading.webp";
 import Logo from "../../../assets/images/logo_green_grocer.webp";
 import "./Header.css";
 import StickyHeader from "./StickyHeader";
-import { Link } from "react-router-dom";
 
 const Header = () => {
   const [loading, setLoading] = useState(true);
@@ -129,7 +129,7 @@ const Header = () => {
               <div className="menu flex">
                 <div className="mx-2 group">
                   <Link
-                    to="/"
+                    to="/about"
                     className="relative z-[1] block px-5 py-3 m-0 text-white text-sm leading-[18px] font-semibold capitalize transition-all duration-500 ease-in-out group-hover:text-white group-hover:bg-[#fa9f00]"
                   >
                     About us
