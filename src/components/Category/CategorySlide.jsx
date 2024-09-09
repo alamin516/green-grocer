@@ -2,15 +2,15 @@ import { useState } from "react";
 import Slider from "react-slick";
 
 import { ArrowBackIosNew, ArrowForwardIos, KeyboardArrowRight } from "@mui/icons-material";
+import { Link } from "react-router-dom";
 import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
-import "./Category.css";
-import { Link } from "react-router-dom";
 import bg5 from "../../assets/images/category/1.jpg";
 import bg4 from "../../assets/images/category/2.jpg";
 import bg3 from "../../assets/images/category/3.jpg";
 import bg2 from "../../assets/images/category/4.jpg";
 import bg1 from "../../assets/images/category/5.jpg";
+import "./Category.css";
 
 const categories = [
   {
