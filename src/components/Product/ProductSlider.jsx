@@ -20,6 +20,7 @@ const ProductSlider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [products, setProducts] = useState([]);
   const [openQuickView,setOpenQuickView]=useState(false);
+  const [quickProduct, setQuickProduct] = useState({});
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -109,13 +110,13 @@ const ProductSlider = () => {
       {
         breakpoint: 768,
         settings: {
-          slidesToShow: 1,
+          slidesToShow: 2,
           slidesToScroll: 1,
           nextArrow: (
             <CustomNextArrow
               currentSlide={currentSlide}
               slideCount={products?.length}
-              slidesToShow={1}
+              slidesToShow={2}
             />
           ),
           prevArrow: <CustomPrevArrow currentSlide={currentSlide} />,
@@ -131,7 +132,9 @@ const ProductSlider = () => {
     ],
   };
 
-  console.log(openQuickView)
+  const handleQuickView = (product) => {
+    setQuickProduct(product);
+  };
 
   return (
     <>
@@ -288,7 +291,7 @@ const ProductSlider = () => {
                         <span className="absolute left-0 top-0 bottom-0 m-auto w-full h-[18px] border-x border-[#e5e5e5]"></span>
                       </button>
 
-                      <button onClick={()=>setOpenQuickView(true)} className="w-10 h-9 leading-9 hover:text-[#111] text-[21px] text-[#888]">
+                      <button onClick={()=>{setOpenQuickView(true), handleQuickView(product)}} className="w-10 h-9 leading-9 hover:text-[#111] text-[21px] text-[#888]">
                         <RemoveRedEye
                           style={{ height: "21px", lineHeight: "36px" }}
                         />
@@ -305,7 +308,7 @@ const ProductSlider = () => {
       
     </div>
     {
-        openQuickView && <QuickViewProduct setOpenQuickView={setOpenQuickView}/>
+        openQuickView && <QuickViewProduct product={quickProduct} openQuickView={openQuickView} setOpenQuickView={setOpenQuickView} />
       }
     </>
   );
