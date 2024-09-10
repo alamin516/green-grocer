@@ -1,0 +1,44 @@
+.seller-slider .product-slider-arrow {
+    position: absolute;
+    right: 0;
+    height: 26px;
+    width: 30px;
+    font-size: 0;
+    padding: 0;
+    background: #eee;
+    border: 1px solid #eee;
+    opacity: 1;
+    box-shadow: none;
+  }
+
+  .seller-slider .product-slider-arrow svg {
+    width: 12px;
+    height: 12px;
+    line-height: 26px;
+    color: #000;
+  }
+  
+  .seller-slider .product-slider-arrow:disabled,
+  .seller-slider .product-slider-arrow:disabled svg {
+    color: #ddd;
+    cursor: pointer;
+  }
+  
+  .seller-slider .arrow-left {
+    border-radius: 25px 0 0 25px;
+    right: 60px;
+  }
+  .seller-slider .arrow-right {
+    border-radius: 0 25px 25px 0;
+    right: 30px;
+  }
+  
+
+  .seller-slider .slick-dots li{
+    margin: 0;
+  }
+
+  .seller-slider .slick-dots li.slick-active button:before{
+    color: #008459;
+  }
+

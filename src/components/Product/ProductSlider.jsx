@@ -26,7 +26,7 @@ const ProductSlider = () => {
     const fetchProducts = async () => {
       const res = await fetch("/product.json");
       const data = await res.json();
-      setProducts(data);
+      setProducts(data.featured);
     };
     fetchProducts();
   }, []);
@@ -121,14 +121,8 @@ const ProductSlider = () => {
           ),
           prevArrow: <CustomPrevArrow currentSlide={currentSlide} />,
         },
-      },
-      {
-        breakpoint: 320,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-        },
-      },
+      }
+    
     ],
   };
 
@@ -153,7 +147,7 @@ const ProductSlider = () => {
         </div>
 
         {/* Slider Start*/}
-        <Slider {...settings}>
+        <Slider {...settings} className="pb-[45px]">
           {products.map((product, i) => {
 
             const hasAttributes =
