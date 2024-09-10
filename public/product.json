@@ -1,4 +1,5 @@
-[
+{
+  "featured": [
     {
       "id": 111,
       "name": "Maecenas et lorem sit amet lorem",
@@ -32,11 +33,14 @@
       "price": 25,
       "discount_price": 20,
       "stock": "12",
+      "best_sell_availability": 100,
       "rating": 0,
-      "attributes": [{
-        "color": "Blue",
-        "size": "M"
-      }]
+      "attributes": [
+        {
+          "color": "Blue",
+          "size": "M"
+        }
+      ]
     },
     {
       "id": 112,
@@ -55,6 +59,7 @@
       "price": 30,
       "discount_price": 0,
       "stock": 100,
+      "best_sell_availability": 100,
       "rating": 4,
       "attributes": []
     },
@@ -75,13 +80,16 @@
       "price": 120,
       "discount_price": 0,
       "stock": 0,
+      "best_sell_availability": 100,
       "rating": 5,
-      "attributes": [{
-        "color": "Brown",
-        "size": "XL",
-        "material": "Leather",
-        "brand": "RetroFashion"
-      }]
+      "attributes": [
+        {
+          "color": "Brown",
+          "size": "XL",
+          "material": "Leather",
+          "brand": "RetroFashion"
+        }
+      ]
     },
     {
       "id": 114,
@@ -100,6 +108,7 @@
       "price": 45,
       "discount_price": 0,
       "stock": 100,
+      "best_sell_availability": 100,
       "rating": 3,
       "attributes": []
     },
@@ -120,13 +129,16 @@
       "price": 15,
       "discount_price": 0,
       "stock": 100,
+      "best_sell_availability": 100,
       "rating": 4,
-      "attributes": [{
-        "color": "Green",
-        "capacity": "350ml",
-        "material": "Ceramic",
-        "brand": "Artisan Home"
-      }]
+      "attributes": [
+        {
+          "color": "Green",
+          "capacity": "350ml",
+          "material": "Ceramic",
+          "brand": "Artisan Home"
+        }
+      ]
     },
     {
       "id": 116,
@@ -145,6 +157,7 @@
       "price": 50,
       "discount_price": 0,
       "stock": 0,
+      "best_sell_availability": 100,
       "rating": 5,
       "attributes": []
     },
@@ -165,6 +178,7 @@
       "price": 12,
       "discount_price": 0,
       "stock": 100,
+      "best_sell_availability": 100,
       "rating": 3,
       "attributes": []
     },
@@ -185,13 +199,136 @@
       "price": 20,
       "discount_price": 15,
       "stock": 100,
+      "best_sell_availability": 100,
       "rating": 4.5,
-      "attributes": [{
-        "color": "Silver",
-        "capacity": "500ml",
-        "material": "Stainless Steel",
-        "brand": "PureHydro"
-      }]
+      "attributes": [
+        {
+          "color": "Silver",
+          "capacity": "500ml",
+          "material": "Stainless Steel",
+          "brand": "PureHydro"
+        }
+      ]
+    }
+  ],
+
+  "best_seller": [
+    {
+      "id": 111,
+      "name": "Maecenas et lorem sit amet lorem",
+      "url": "https://theme-organic.mybigcommerce.com/smith-journal-13/",
+      "images": [
+        {
+          "src": "https://cdn11.bigcommerce.com/s-vptmq0v2zd/images/stencil/305x395/products/86/495/11-02__78491.1606378003.jpg?c=1",
+          "alt": "Product Image 1"
+        },
+        {
+          "src": "https://cdn11.bigcommerce.com/s-vptmq0v2zd/images/stencil/305x395/products/86/496/11-03__25246.1606378003.jpg?c=1",
+          "alt": "Product Image 2"
+        },
+        {
+          "src": "https://cdn11.bigcommerce.com/s-vptmq0v2zd/images/stencil/305x395/products/86/497/11-04__42447.1606378004.jpg?c=1",
+          "alt": "Product Image 1"
+        },
+        {
+          "src": "https://cdn11.bigcommerce.com/s-vptmq0v2zd/images/stencil/305x395/products/86/498/11__18274.1606378004.jpg?c=1",
+          "alt": "Product Image 2"
+        }
+      ],
+      "price": 25,
+      "discount_price": 0,
+      "stock": 0,
+      "best_sell_availability": 100,
+      "rating": 0,
+      "attributes": []
+    },
+    {
+      "id": 112,
+      "name": "Organic Cotton Shirt",
+      "url": "https://theme-organic.mybigcommerce.com/organic-cotton-shirt/",
+      "images": [
+        {
+          "src": "https://cdn11.bigcommerce.com/s-vptmq0v2zd/images/stencil/305x395/products/97/480/07__57337.1606377940.jpg?c=1",
+          "alt": "Organic Cotton Shirt - Front"
+        },
+        {
+          "src": "https://cdn11.bigcommerce.com/s-vptmq0v2zd/images/stencil/305x395/products/97/481/07-02__83472.1606377941.jpg?c=1",
+          "alt": "Organic Cotton Shirt - Back"
+        },
+        {
+          "src": "https://cdn11.bigcommerce.com/s-vptmq0v2zd/images/stencil/305x395/products/97/482/07-03__67720.1606377941.jpg?c=1",
+          "alt": "Organic Cotton Shirt - Back"
+        }
+      ],
+      "price": 30,
+      "discount_price": 0,
+      "stock": 0,
+      "best_sell_availability": 100,
+      "rating": 4,
+      "attributes": [{ "colors": ["M", "L", "XL"] }]
+    },
+    {
+      "id": 113,
+      "name": "Vintage Leather Jacket",
+      "url": "https://theme-organic.mybigcommerce.com/vintage-leather-jacket/",
+      "images": [
+        {
+          "src": "https://cdn11.bigcommerce.com/s-vptmq0v2zd/images/stencil/250x325/products/107/454/03__67301.1606377896.jpg?c=1",
+          "alt": "Vintage Leather Jacket - Front"
+        },
+        {
+          "src": "https://cdn11.bigcommerce.com/s-vptmq0v2zd/images/stencil/250x325/products/107/461/03-02__81066.1606377897.jpg?c=1",
+          "alt": "Vintage Leather Jacket - Side"
+        }
+      ],
+      "price": 120,
+      "discount_price": 0,
+      "stock": 34,
+      "best_sell_availability": 100,
+      "rating": 5,
+      "attributes": []
+    },
+    {
+      "id": 114,
+      "name": "Bamboo Sunglasses",
+      "url": "https://theme-organic.mybigcommerce.com/bamboo-sunglasses/",
+      "images": [
+        {
+          "src": "https://cdn11.bigcommerce.com/s-vptmq0v2zd/images/stencil/250x325/products/104/464/04__27659.1606377910.jpg?c=1",
+          "alt": "Bamboo Sunglasses"
+        },
+        {
+          "src": "https://cdn11.bigcommerce.com/s-vptmq0v2zd/images/stencil/250x325/products/104/466/04-04__30886.1606377910.jpg?c=1",
+          "alt": "Bamboo Sunglasses"
+        }
+      ],
+      "price": 45,
+      "discount_price": 0,
+      "stock": 75,
+      "best_sell_availability": 100,
+      "rating": 3,
+      "attributes": []
+    },
+    {
+      "id": 115,
+      "name": "Handmade Ceramic Mug",
+      "url": "https://theme-organic.mybigcommerce.com/handmade-ceramic-mug/",
+      "images": [
+        {
+          "src": "https://cdn11.bigcommerce.com/s-vptmq0v2zd/images/stencil/250x325/products/103/474/05__15042.1606377920.jpg?c=1",
+          "alt": "Handmade Ceramic Mug"
+        },
+        {
+          "src": "https://cdn11.bigcommerce.com/s-vptmq0v2zd/images/stencil/250x325/products/103/472/05-03__41598.1606377919.jpg?c=1",
+          "alt": "Handmade Ceramic Mug"
+        }
+      ],
+      "price": 15,
+      "discount_price": 0,
+      "stock": 0,
+      "best_sell_availability": 100,
+      "rating": 4,
+      "attributes": []
     }
   ]
-  
+}
