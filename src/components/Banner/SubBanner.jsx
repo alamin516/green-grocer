@@ -19,11 +19,11 @@ const SubBanner = () => {
                   loading="lazy"
                 />
               </Link>
-              <div className={`subbanner-content absolute 1500px:top-[34px] top-[48px]  right-auto text-left ${subbanner.align === "left" ? "left-[30px] lg:w-[48%] text-left" : "left-[10px] w-[45%] text-center"}`}>
-                <div className="text-base mb-[5px] capitalize text-[#111] leading-5">
+              <div className={`subbanner-content absolute lg:top-[34px] md:top-[48px] top-[8px]  right-auto text-left ${subbanner.align === "left" ? "left-[30px] lg:w-[48%] text-left" : "left-[10px] w-[45%] text-center"}`}>
+                <div className="text-sm lg:text-base mb-[5px] capitalize text-[#111] leading-5">
                   {subbanner.subtitle}
                 </div>
-                <div className="text-[28px] capitalize text-[#111] font-bold leading-[34px] mb-[15px]">
+                <div className="lg:text-[28px] text-lg capitalize text-[#111] font-bold lg:leading-[34px] lg:mb-[15px] mb-[8px]">
                 {subbanner.title}
                 </div>
                 <div className="">

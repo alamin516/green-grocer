@@ -282,9 +282,9 @@
         }
       ],
       "price": 120,
-      "discount_price": 0,
+      "discount_price": 100,
       "stock": 34,
-      "best_sell_availability": 100,
+      "best_sell_availability": 200,
       "rating": 5,
       "attributes": []
     },
