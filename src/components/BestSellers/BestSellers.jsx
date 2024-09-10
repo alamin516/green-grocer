@@ -162,9 +162,9 @@ const BestSellers = () => {
             const isOutOfStock = product.stock === 0;
             const hasDiscount = product.discount_price > 0;
 
-            const totalStock = product.best_sell_availability;
+            const best_sell = product.best_sell_availability;
             const availableStock = product.stock;
-            const stockPercentage = totalStock - availableStock
+            const stockPercentage = best_sell > 0 ? ((best_sell - availableStock) / best_sell) * 100 : 0;
 
             return (
               <div key={i}>
