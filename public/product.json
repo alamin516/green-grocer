@@ -237,7 +237,7 @@
       ],
       "price": 25,
       "discount_price": 0,
-      "stock": 0,
+      "stock": 80,
       "best_sell_availability": 100,
       "rating": 0,
       "attributes": []
@@ -262,7 +262,7 @@
       ],
       "price": 30,
       "discount_price": 0,
-      "stock": 0,
+      "stock": 35,
       "best_sell_availability": 100,
       "rating": 4,
       "attributes": [{ "colors": ["M", "L", "XL"] }]
@@ -273,11 +273,23 @@
       "url": "https://theme-organic.mybigcommerce.com/vintage-leather-jacket/",
       "images": [
         {
-          "src": "https://cdn11.bigcommerce.com/s-vptmq0v2zd/images/stencil/250x325/products/107/454/03__67301.1606377896.jpg?c=1",
+          "src": "https://cdn11.bigcommerce.com/s-vptmq0v2zd/images/stencil/305x395/products/103/474/05__15042.1606377920.jpg?c=1",
           "alt": "Vintage Leather Jacket - Front"
         },
         {
-          "src": "https://cdn11.bigcommerce.com/s-vptmq0v2zd/images/stencil/250x325/products/107/461/03-02__81066.1606377897.jpg?c=1",
+          "src": "https://cdn11.bigcommerce.com/s-vptmq0v2zd/images/stencil/305x395/products/103/472/05-03__41598.1606377919.jpg?c=1",
+          "alt": "Vintage Leather Jacket - Side"
+        },
+        {
+          "src": "https://cdn11.bigcommerce.com/s-vptmq0v2zd/images/stencil/305x395/products/103/470/05-04__10031.1606377919.jpg?c=1",
+          "alt": "Vintage Leather Jacket - Side"
+        },
+        {
+          "src": "https://cdn11.bigcommerce.com/s-vptmq0v2zd/images/stencil/305x395/products/103/469/05-06__78031.1606377918.jpg?c=1",
+          "alt": "Vintage Leather Jacket - Side"
+        },
+        {
+          "src": "https://cdn11.bigcommerce.com/s-vptmq0v2zd/images/stencil/305x395/products/103/471/05-02__15380.1606377919.jpg?c=1",
           "alt": "Vintage Leather Jacket - Side"
         }
       ],

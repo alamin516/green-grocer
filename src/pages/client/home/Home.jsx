@@ -1,4 +1,5 @@
 import BannerSection from "../../../components/Banner/BannerSection";
+import BottomBanner from "../../../components/Banner/BottomBanner";
 import OfferBanner from "../../../components/Banner/OfferBanner";
 import SubBanner from "../../../components/Banner/SubBanner";
 import BestSellers from "../../../components/BestSellers/BestSellers";
@@ -22,6 +23,7 @@ function Home() {
       <SubBanner/>
       <ProductSlider/>
       <BestSellers/>
+      <BottomBanner/>
     </>
   );
 }
