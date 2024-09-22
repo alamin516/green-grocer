@@ -3,6 +3,7 @@ import BottomBanner from "../../../components/Banner/BottomBanner";
 import OfferBanner from "../../../components/Banner/OfferBanner";
 import SubBanner from "../../../components/Banner/SubBanner";
 import BestSellers from "../../../components/BestSellers/BestSellers";
+import HomeBlog from "../../../components/Blog/HomeBlog";
 import CategorySlide from "../../../components/Category/CategorySlide";
 import NewProducts from "../../../components/Product/NewProducts";
 import ProductSlider from "../../../components/Product/ProductSlider";
@@ -26,6 +27,7 @@ function Home() {
       <BestSellers/>
       <BottomBanner/>
       <NewProducts/>
+      <HomeBlog/>
     </>
   );
 }

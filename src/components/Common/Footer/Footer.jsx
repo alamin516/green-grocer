@@ -5,11 +5,11 @@ import icon1 from "../../../assets/images/icons/download.svg";
 
 const Footer = () => {
   return (
-    <div className="footer">
+    <div className="footer border-t border-[#f5f5f5]">
       {/* Footer top */}
       <div className="footer-top">
         <div className="1500px:w-[1430px] px-[15px] mx-auto pt-[60px] pb-2.5">
-          <div className="footer-links grid grid-cols-4">
+          <div className="footer-links grid lg:grid-cols-4 grid-cols-1 md:grid-cols-2 gap-5">
             <div className="footer-info">
               <article>
                 <h5 className="mb-5 cursor-pointer text-lg font-semibold leading-[22px] capitalize">
@@ -102,7 +102,7 @@ const Footer = () => {
             </div>
           </div>
           <div className="footer-services mt-10 py-10 bg-[#f7f7f7]">
-            <div className="px-[30px] grid grid-cols-4 gap-x-2.5">
+            <div className="px-[30px] grid lg:grid-cols-4 grid-cols-1 md:grid-cols-2 gap-5 lg:gap-x-2.5">
               {Array.from({ length: 4 }).map((_, i) => (
                 <div key={i} className="my-4 py-2.5 flex group">
                   <img
