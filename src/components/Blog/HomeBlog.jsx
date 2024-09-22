@@ -58,6 +58,8 @@ const HomeBlog = () => {
 
   const settings = {
     infinite: true,
+    autoplay: true,
+    speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
     dots: false,
@@ -97,7 +99,7 @@ const HomeBlog = () => {
   };
 
   return (
-    <div className="w-full blog-slider mb-5">
+    <div className="w-full blog-slider mb-5 pb-10">
       <div className="1500px:w-[1430px] mx-auto">
         {/* Heading */}
         <div className="px-[15px]">
@@ -125,7 +127,7 @@ const HomeBlog = () => {
                         />
                       </Link>
                     </figure>
-                    <span className="absolute top-0 left-0 opacity-0 group-hover:opacity-100 bg-black/30 w-full h-full flex items-center justify-center transition-transform duration-300 ease-in-out z-0">
+                    <span className="absolute top-0 left-0 opacity-0 group-hover:opacity-100 bg-black/30 w-full h-full flex items-center justify-center transition-all duration-300 ease-in-out cursor-pointer">
                       <Link to={"/"}>
                         <span className="w-10 h-10 flex items-center justify-center border-2 border-white rounded-full text-white opacity-50 scale-150 group-hover:opacity-100 group-hover:scale-100 transition-all duration-300 ease-in-out hover:bg-[#008459] hover:border-[#008459]">
                           <Search className="!text-lg" />
