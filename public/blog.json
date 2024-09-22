@@ -1,0 +1,54 @@
+{
+    "posts": [
+        {
+            "title": "The Benefits of Organic Farming",
+            "short_des": "Explore how organic farming promotes sustainability and health.",
+            "long_des": "Organic farming is an environmentally friendly approach that eliminates the use of synthetic pesticides and fertilizers. It promotes soil health, biodiversity, and cleaner water supplies, resulting in healthier produce and sustainable ecosystems.",
+            "featured_image": "/src/assets/images/posts/01.jpg",
+            "author": "John Doe",
+            "date": "2024-09-22",
+            "category": "Farming",
+            "tag": ["Organic", "Farming", "Sustainability"]
+        },
+        {
+            "title": "Mastering Urban Gardening",
+            "short_des": "A guide to growing your own produce in small urban spaces.",
+            "long_des": "Urban gardening allows city dwellers to grow their own food in small spaces like balconies, rooftops, and backyards. This guide provides practical tips on container gardening, vertical gardens, and choosing the right plants for urban environments.",
+            "featured_image": "/src/assets/images/posts/02.jpg",
+            "author": "Jane Smith",
+            "date": "2024-09-20",
+            "category": "Gardening",
+            "tag": ["Urban Gardening", "Sustainability", "Green Living"]
+        },
+        {
+            "title": "Building a Community Supported Agriculture (CSA) Program",
+            "short_des": "Learn how to create a successful CSA to support local farmers.",
+            "long_des": "Community Supported Agriculture (CSA) programs provide a direct connection between farmers and consumers. This article covers the basics of setting up a CSA, including marketing, membership plans, and the benefits of supporting local farmers.",
+            "featured_image": "/src/assets/images/posts/03.jpg",
+            "author": "Mike Taylor",
+            "date": "2024-09-18",
+            "category": "Agriculture",
+            "tag": ["CSA", "Farming", "Local Food"]
+        },
+        {
+            "title": "Getting Started with Sustainable Packaging",
+            "short_des": "How to switch to eco-friendly packaging for your grocery business.",
+            "long_des": "Sustainable packaging is essential for reducing waste and protecting the environment. This guide offers advice on choosing biodegradable, reusable, or compostable packaging for green grocer businesses.",
+            "featured_image": "/src/assets/images/posts/04.jpg",
+            "author": "Emily Davis",
+            "date": "2024-09-15",
+            "category": "Sustainability",
+            "tag": ["Eco-friendly", "Packaging", "Green Business"]
+        },
+        {
+            "title": "Understanding Seasonal Eating",
+            "short_des": "Discover the benefits of eating fresh, seasonal produce.",
+            "long_des": "Eating seasonal produce ensures that you're getting the freshest and most nutrient-dense fruits and vegetables while supporting local farmers. Learn about the benefits of seasonal eating and how to choose the right produce throughout the year.",
+            "featured_image": "/src/assets/images/posts/05.jpg",
+            "author": "Alex Brown",
+            "date": "2024-09-10",
+            "category": "Nutrition",
+            "tag": ["Seasonal Eating", "Health", "Local Food"]
+        }
+    ]
+}
