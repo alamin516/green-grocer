@@ -3,7 +3,7 @@ import React from 'react';
 const About = () => {
     return (
         <div>
-            <h2>This is About Page</h2>
+            <h2>This is About Page</h2>The Study of Poetry by Matthew Arnold: A Detailed Exploration
         </div>
     );
 };
