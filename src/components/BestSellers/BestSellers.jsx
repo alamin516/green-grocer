@@ -144,7 +144,7 @@ const BestSellers = () => {
 
   return (
     <div className="seller-slider w-full mb-10 pt-10 relative bg-[#f4f5f7]">
-      <div className="1500px:w-[1430px] mx-auto">
+      <div className="section-container mx-auto">
         <div className="px-[15px]">
           <h1 className="page_heading lg:text-[22px] text-lg text-[#222] leading-[34px] font-bold py-1.5 tracking-[0.8] capitalize relative">
             <span className="relative bg-[#f4f5f7] z-[2] pr-[25px]">

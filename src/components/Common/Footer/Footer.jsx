@@ -8,7 +8,7 @@ const Footer = () => {
     <div className="footer border-t border-[#f5f5f5]">
       {/* Footer top */}
       <div className="footer-top">
-        <div className="1500px:w-[1430px] px-[15px] mx-auto pt-[60px] pb-2.5">
+        <div className="section-container px-[15px] mx-auto pt-[60px] pb-2.5">
           <div className="footer-links grid lg:grid-cols-4 grid-cols-1 md:grid-cols-2 gap-5">
             <div className="footer-info">
               <article>
@@ -137,7 +137,7 @@ const Footer = () => {
       </div>
       {/* Footer Bottom */}
       <div className="footer-bottom border-t-[#f7f7f7] bg-[#f7f7f7]">
-        <div className="1500px:w-[1430px] px-[15px] mx-auto">
+        <div className="section-container px-[15px] mx-auto">
           <div className="">
             <span className="text-sm text-[#666] leading-[50px]">
               Powered by TeamDevFast {new Date().getFullYear()} Organics

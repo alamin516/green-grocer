@@ -1,7 +1,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 
-const SEO = ({ siteTitle = "Green Grocer", title, description, keywords, image, url }) => {
+const SEO = ({ siteTitle = "Green Grocer", title = "", description = "", keywords ="", image = "", url = "" }) => {
   return (
     <Helmet>
       {/* Standard SEO Tags */}

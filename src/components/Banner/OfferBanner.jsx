@@ -49,7 +49,7 @@ const OfferBanner = () => {
 
   return (
     <div className="offer-slider w-full lg:py-[30px] py-[15px] lg:px-[15px] lg:mb-[30px] bg-gray-100 relative">
-      <Slider {...settings} className="1500px:w-[1430px] px-[15px] mx-auto">
+      <Slider {...settings} className="section-container px-[15px] mx-auto">
         {offers.map((offer, i) => (
           <div
             key={i}

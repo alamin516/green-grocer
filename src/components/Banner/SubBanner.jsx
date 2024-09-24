@@ -7,7 +7,7 @@ import image2 from "../../assets/images/banner/sub-banner-02.jpg"
 const SubBanner = () => {
   return (
     <div className="subbanner w-full lg:mb-10 relative">
-      <div className="1500px:w-[1430px] mx-auto px-[15px]">
+      <div className="section-container mx-auto px-[15px]">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[30px]">
           {subbanners.map((subbanner, i) => 
             <div key={i} className="subbanner-item relative">

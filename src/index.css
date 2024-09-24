@@ -26,3 +26,62 @@ h5 {
 h6 {
   font-size: 0.75em;
 }
+
+@media (min-width: 1680px){
+  .section-container{
+    max-width: 1680px;
+  }
+}
+
+.section-container {
+  position: relative;
+  width: 100%
+}
+
+@media (min-width: 1680px) {
+  .section-container {
+      width:1680px
+  }
+}
+
+@media (min-width: 1631px) and (max-width:1680px) {
+  .section-container {
+      width:1600px
+  }
+}
+
+@media (min-width: 1500px) and (max-width:1630px) {
+  .section-container {
+      width:1430px
+  }
+}
+
+@media (min-width: 1260px) and (max-width:1499px) {
+  .section-container {
+      width:1230px
+  }
+}
+
+@media (min-width: 1200px) and (max-width:1259px) {
+  .section-container {
+      width:1170px
+  }
+}
+
+@media (min-width: 992px) and (max-width:1199px) {
+  .section-container {
+      width:970px
+  }
+}
+
+@media (min-width: 768px) and (max-width:991px) {
+  .section-container {
+      width:750px
+  }
+}
+
+@media (max-width: 767px) {
+  .section-container {
+      width:100%;
+  }
+}

@@ -64,7 +64,7 @@ const Header = () => {
       <div className="header">
         {/* Header Top */}
         <div className="header-top hidden md:block py-3 w-full">
-          <div className="1500px:w-[1430px] px-[15px] mx-auto flex justify-between">
+          <div className="section-container px-[15px] mx-auto flex justify-between">
             <div className="flex items-center text-sm tracking-[0.8px]">
               <span className="mr-[5px]">
                 <svg
@@ -113,7 +113,7 @@ const Header = () => {
         </div>
         {/* Header Ccenter */}
         <div className="header-center w-full bg-[#008459]">
-          <div className="1500px:w-[1430px] px-[15px] mx-auto flex justify-between items-center">
+          <div className="section-container px-[15px] mx-auto flex justify-between items-center">
             <div className="block 1100px:hidden">
               <Menu
                 onClick={() => setIsMobile(true)}
@@ -213,7 +213,7 @@ const Header = () => {
         </div>
         {/* Header Bottom */}
         <div className="header-bottom w-full bg-[#007750] py-[10px] mb-[15px] lg:mb-[30px]">
-          <div className="1500px:w-[1430px] px-[15px] mx-auto flex items-center">
+          <div className="section-container px-[15px] mx-auto flex items-center">
             {/* Header Bottom COl-1 */}
             <div className="cat-menus w-[18%] relative 1100px:block hidden">
               <div
