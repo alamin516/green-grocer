@@ -5,12 +5,14 @@ import Footer from "../../../components/Common/Footer/Footer";
 import Breadcrumbs from "../../../components/Common/Breadcrumbs";
 import errorImage from "../../../assets/images/error-404.webp";
 import ProductSlider from "../../../components/Product/ProductSlider";
+import SEO from "../../../components/Seo";
 
 const NotFound = () => {
   return (
     <>
+      <SEO title="404 Not Found" />
       <Header />
-      <Breadcrumbs />
+      <Breadcrumbs pageTitle="Error" />
       <div className="w-full mb-20 flex justify-center">
         <div className="text-center">
           <img
@@ -36,7 +38,7 @@ const NotFound = () => {
           </button>
         </div>
       </div>
-      <ProductSlider/>
+      <ProductSlider />
       <Footer />
     </>
   );

@@ -35,7 +35,7 @@ const StickyHeader = ({ openCat, setOpenCat, setIsMobile }) => {
           isSticky ? "top-0 left-0 right-0" : "top-[-100%]"
         } fixed  header-sticky z-[999] w-full bg-[#008459] py-[5px] transition-all duration-500`}
       >
-        <div className="1500px:w-[1430px] px-[15px] mx-auto flex justify-between items-center">
+        <div className="section-container px-[15px] mx-auto flex justify-between items-center">
           <div className="block lg:hidden">
             <Menu onClick={()=> setIsMobile(true)} className="text-white" />
           </div>

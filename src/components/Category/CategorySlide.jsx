@@ -169,7 +169,7 @@ const CategorySlide = () => {
   };
   return (
     <div className="category-slider w-full mb-10 relative">
-      <div className="1500px:w-[1430px] mx-auto">
+      <div className="section-container mx-auto">
         <div className="px-[15px]">
           <h1 className="page_heading lg:text-[22px] text-lg text-[#222] leading-[34px] font-bold py-1.5 tracking-[0.8] capitalize relative lg:mb-5">
             <span className="relative bg-white z-[2] pr-[25px]">
