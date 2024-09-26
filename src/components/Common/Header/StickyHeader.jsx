@@ -1,10 +1,10 @@
 import {
-    ArrowDropUp,
-    ArrowForward,
-    FavoriteBorder,
-    Menu,
-    PermIdentity,
-    ShoppingCart,
+  ArrowDropUp,
+  ArrowForward,
+  FavoriteBorder,
+  Menu,
+  PermIdentity,
+  ShoppingCart,
 } from "@mui/icons-material";
 import { useEffect, useState } from "react";
 import Logo from "../../../assets/images/logo_green_grocer.webp";
@@ -37,7 +37,7 @@ const StickyHeader = ({ openCat, setOpenCat, setIsMobile }) => {
       >
         <div className="section-container px-[15px] mx-auto flex justify-between items-center">
           <div className="block lg:hidden">
-            <Menu onClick={()=> setIsMobile(true)} className="text-white" />
+            <Menu onClick={() => setIsMobile(true)} className="text-white" />
           </div>
           <div className="cat-menus w-[18%] relative lg:block hidden">
             <div
@@ -64,7 +64,7 @@ const StickyHeader = ({ openCat, setOpenCat, setIsMobile }) => {
               }`}
             >
               <ul>
-              {[1,1,1,1,1,1,1,1,1,1].map((i)=>  
+                {[1, 1, 1, 1, 1, 1, 1, 1, 1, 1].map((i) => (
                   <li key={i}>
                     <Link
                       to="#"
@@ -76,7 +76,8 @@ const StickyHeader = ({ openCat, setOpenCat, setIsMobile }) => {
                       All Shop
                       <span className="absolute w-[90%] bottom-0 left-0 m-auto right-0 border-b-[#eee] border-b"></span>
                     </Link>
-                  </li>)}
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
@@ -89,7 +90,16 @@ const StickyHeader = ({ openCat, setOpenCat, setIsMobile }) => {
             <div className="menu flex">
               <div className="mx-2 group">
                 <Link
-                  to="/"
+                  to="/shop"
+                  className="relative z-[1] block px-5 py-3 m-0 text-white text-sm leading-[18px] font-semibold capitalize transition-all duration-500 ease-in-out group-hover:text-white group-hover:bg-[#fa9f00]"
+                >
+                  Shop
+                  <span className="absolute left-0 top-0 h-full w-0 bg-white opacity-20 duration-500 transition-all group-hover:w-full"></span>
+                </Link>
+              </div>
+              <div className="mx-2 group">
+                <Link
+                  to="/about"
                   className="relative z-[1] block px-5 py-3 m-0 text-white text-sm leading-[18px] font-semibold capitalize transition-all duration-500 ease-in-out group-hover:text-white group-hover:bg-[#fa9f00]"
                 >
                   About us
@@ -101,25 +111,7 @@ const StickyHeader = ({ openCat, setOpenCat, setIsMobile }) => {
                   to="/"
                   className="relative z-[1] block px-5 py-3 m-0 text-white text-sm leading-[18px] font-semibold capitalize transition-all duration-500 ease-in-out group-hover:text-white group-hover:bg-[#fa9f00]"
                 >
-                  Affiliate
-                  <span className="absolute left-0 top-0 h-full w-0 bg-white opacity-20 duration-500 transition-all group-hover:w-full"></span>
-                </Link>
-              </div>
-              <div className="mx-2 group">
-                <Link
-                  to="/"
-                  className="relative z-[1] block px-5 py-3 m-0 text-white text-sm leading-[18px] font-semibold capitalize transition-all duration-500 ease-in-out group-hover:text-white group-hover:bg-[#fa9f00]"
-                >
                   Contact us
-                  <span className="absolute left-0 top-0 h-full w-0 bg-white opacity-20 duration-500 transition-all group-hover:w-full"></span>
-                </Link>
-              </div>
-              <div className="mx-2 group">
-                <Link
-                  to="/"
-                  className="relative z-[1] block px-5 py-3 m-0 text-white text-sm leading-[18px] font-semibold capitalize transition-all duration-500 ease-in-out group-hover:text-white group-hover:bg-[#fa9f00]"
-                >
-                  Gift Certificate
                   <span className="absolute left-0 top-0 h-full w-0 bg-white opacity-20 duration-500 transition-all group-hover:w-full"></span>
                 </Link>
               </div>

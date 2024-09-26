@@ -31,14 +31,16 @@
         }
       ],
       "price": 25,
+      "isFeatured": false,
       "discount_price": 20,
-      "stock": "12",
+      "stock": 12,
       "best_sell_availability": 100,
       "rating": 0,
       "attributes": [
         {
-          "color": "Blue",
-          "size": "M"
+          "color": ["Blue"],
+          "size": ["M"],
+          "brand": ["lenovo mobile"]
         }
       ]
     },
@@ -57,6 +59,7 @@
         }
       ],
       "price": 30,
+      "isFeatured": false,
       "discount_price": 0,
       "stock": 100,
       "best_sell_availability": 100,
@@ -78,16 +81,17 @@
         }
       ],
       "price": 120,
+      "isFeatured": true,
       "discount_price": 0,
       "stock": 0,
       "best_sell_availability": 100,
       "rating": 5,
       "attributes": [
         {
-          "color": "Brown",
+          "color": ["Brown"],
           "size": "XL",
           "material": "Leather",
-          "brand": "RetroFashion"
+          "brand": ["RetroFashion"]
         }
       ]
     },
@@ -106,6 +110,7 @@
         }
       ],
       "price": 45,
+      "isFeatured": true,
       "discount_price": 0,
       "stock": 100,
       "best_sell_availability": 100,
@@ -127,16 +132,15 @@
         }
       ],
       "price": 15,
+      "isFeatured": false,
       "discount_price": 0,
       "stock": 100,
       "best_sell_availability": 100,
       "rating": 4,
       "attributes": [
         {
-          "color": "Green",
-          "capacity": "350ml",
-          "material": "Ceramic",
-          "brand": "Artisan Home"
+          "color": ["Red"],
+          "brand": ["Artisan Home"]
         }
       ]
     },
@@ -155,6 +159,7 @@
         }
       ],
       "price": 50,
+      "isFeatured": false,
       "discount_price": 0,
       "stock": 0,
       "best_sell_availability": 100,
@@ -176,6 +181,7 @@
         }
       ],
       "price": 12,
+      "isFeatured": false,
       "discount_price": 0,
       "stock": 100,
       "best_sell_availability": 100,
@@ -197,16 +203,17 @@
         }
       ],
       "price": 20,
+      "isFeatured": false,
       "discount_price": 15,
       "stock": 100,
       "best_sell_availability": 100,
       "rating": 4.5,
       "attributes": [
         {
-          "color": "Silver",
+          "color": ["Silver"],
           "capacity": "500ml",
           "material": "Stainless Steel",
-          "brand": "PureHydro"
+          "brand": ["PureHydro"]
         }
       ]
     }
@@ -236,6 +243,7 @@
         }
       ],
       "price": 25,
+      "isFeatured": false,
       "discount_price": 0,
       "stock": 80,
       "best_sell_availability": 100,
@@ -261,6 +269,7 @@
         }
       ],
       "price": 30,
+      "isFeatured": false,
       "discount_price": 0,
       "stock": 35,
       "best_sell_availability": 100,
@@ -294,6 +303,7 @@
         }
       ],
       "price": 120,
+      "isFeatured": false,
       "discount_price": 100,
       "stock": 34,
       "best_sell_availability": 200,
@@ -315,6 +325,7 @@
         }
       ],
       "price": 45,
+      "isFeatured": false,
       "discount_price": 0,
       "stock": 75,
       "best_sell_availability": 100,
@@ -336,6 +347,7 @@
         }
       ],
       "price": 15,
+      "isFeatured": false,
       "discount_price": 0,
       "stock": 0,
       "best_sell_availability": 100,
