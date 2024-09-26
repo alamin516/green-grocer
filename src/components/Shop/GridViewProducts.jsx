@@ -74,7 +74,7 @@ const GridViewProducts = ({filteredProducts}) => {
                   </div>
                   {/* Title */}
                   <div className="mt-2.5 mb-1.5 px-2.5 group-hover:opacity-0 transition-all duration-500 ease-in-out">
-                    <h3 className="text-ellipsis overflow-hidden transition duration-300">
+                    <h3 className="text-ellipsis text-center overflow-hidden transition duration-300">
                       <Link
                         to={""}
                         className="text-[14px] leading-[18px] text-[#444] whitespace-nowrap"

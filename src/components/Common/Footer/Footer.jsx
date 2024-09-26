@@ -103,11 +103,16 @@ const Footer = () => {
           </div>
           <div className="footer-services mt-10 py-10 bg-[#f7f7f7]">
             <div className="px-[30px] grid lg:grid-cols-4 grid-cols-1 md:grid-cols-2 gap-5 lg:gap-x-2.5">
-              {Array.from({ length: 4 }).map((_, i) => (
+              {[
+                "https://cdn11.bigcommerce.com/s-vptmq0v2zd/stencil/efa88c60-1817-0139-598a-0242ac11000c/e/b7582320-cd53-0138-055f-0242ac11000e/img/service-01.png",
+                "https://cdn11.bigcommerce.com/s-vptmq0v2zd/stencil/efa88c60-1817-0139-598a-0242ac11000c/e/b7582320-cd53-0138-055f-0242ac11000e/img/service-02.png",
+                "https://cdn11.bigcommerce.com/s-vptmq0v2zd/stencil/efa88c60-1817-0139-598a-0242ac11000c/e/b7582320-cd53-0138-055f-0242ac11000e/img/service-03.png",
+                "https://cdn11.bigcommerce.com/s-vptmq0v2zd/stencil/efa88c60-1817-0139-598a-0242ac11000c/e/b7582320-cd53-0138-055f-0242ac11000e/img/service-04.png",
+              ].map((item, i) => (
                 <div key={i} className="my-4 py-2.5 flex group">
                   <img
                     className="transition-transform duration-300 group-hover:rotate-y-[180deg]"
-                    src="https://cdn11.bigcommerce.com/s-vptmq0v2zd/stencil/efa88c60-1817-0139-598a-0242ac11000c/e/b7582320-cd53-0138-055f-0242ac11000e/img/service-01.png"
+                    src={item}
                   />
                   <div className="pl-3 pt-2.5">
                     <h3 className="text-base font-semibold leading-6">

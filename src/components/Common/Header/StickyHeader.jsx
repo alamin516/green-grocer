@@ -108,7 +108,7 @@ const StickyHeader = ({ openCat, setOpenCat, setIsMobile }) => {
               </div>
               <div className="mx-2 group">
                 <Link
-                  to="/"
+                  to="/contact"
                   className="relative z-[1] block px-5 py-3 m-0 text-white text-sm leading-[18px] font-semibold capitalize transition-all duration-500 ease-in-out group-hover:text-white group-hover:bg-[#fa9f00]"
                 >
                   Contact us

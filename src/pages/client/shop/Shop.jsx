@@ -142,15 +142,15 @@ const Shop = () => {
               <div className="p-[15px] border border-[#e5e5e5] mb-[15px] lg:flex justify-between items-center">
                 <div className="flex justify-center items-center lg:justify-start mb-3 lg:mb-0">
                   <button onClick={() => setIsGrid(true)}>
-                    <ViewModule className="!text-[30px]" />
+                    <ViewModule className="!text-[30px] bg-white" />
                   </button>
                   <button onClick={() => setIsGrid(false)}>
-                    <ViewList className="!text-[30px]" />
+                    <ViewList className="!text-[30px] bg-white" />
                   </button>
                 </div>
                 <div>
                   <form>
-                    <div className="w-full bg-white border border-[#e5e5e5] overflow-hidden">
+                    <div className="w-full bg-white border border-[#e5e5e5] overflow-hidden flex justify-between items-center">
                       <label
                         htmlFor="sort"
                         className="inline-block text-[#666] text-sm mb-0 pl-2.5 mr-[5px]"
@@ -161,7 +161,7 @@ const Shop = () => {
                         id="sort"
                         name="sort"
                         onChange={(e) => handleSort(e.target.value)}
-                        className="text-[#666] font-medium leading-[16px] pl-[3px] py-2 pr-8 text-sm outline-none !rounded-[5px]"
+                        className="text-[#666] bg-white font-medium leading-[16px] pl-[3px] py-2 pr-8 text-sm outline-none !rounded-[5px]"
                       >
                         <option value="featured">Featured Items</option>
                         <option value="newest">Newest Items</option>
