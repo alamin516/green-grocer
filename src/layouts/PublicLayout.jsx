@@ -2,6 +2,7 @@ import BackToTopButton from '../components/Common/BackToTopButton'
 import Footer from '../components/Common/Footer/Footer'
 import Header from '../components/Common/Header/Header'
 import { Outlet } from 'react-router-dom'
+import Newsletter from '../components/Common/Newsletter'
 
 const PublicLayout = () => {
   return (
@@ -12,6 +13,7 @@ const PublicLayout = () => {
         <div className='page-content'>
             <Outlet/>
         </div>
+        <Newsletter/>
         {/* Footer */}
         <Footer/>
         <BackToTopButton/>

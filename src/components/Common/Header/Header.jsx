@@ -129,6 +129,15 @@ const Header = () => {
               <div className="menu flex">
                 <div className="mx-2 group">
                   <Link
+                    to="/shop"
+                    className="relative z-[1] block px-5 py-3 m-0 text-white text-sm leading-[18px] font-semibold capitalize transition-all duration-500 ease-in-out group-hover:text-white group-hover:bg-[#fa9f00]"
+                  >
+                    Shop
+                    <span className="absolute left-0 top-0 h-full w-0 bg-white opacity-20 duration-500 transition-all group-hover:w-full"></span>
+                  </Link>
+                </div>
+                <div className="mx-2 group">
+                  <Link
                     to="/about"
                     className="relative z-[1] block px-5 py-3 m-0 text-white text-sm leading-[18px] font-semibold capitalize transition-all duration-500 ease-in-out group-hover:text-white group-hover:bg-[#fa9f00]"
                   >
@@ -141,25 +150,7 @@ const Header = () => {
                     to="/"
                     className="relative z-[1] block px-5 py-3 m-0 text-white text-sm leading-[18px] font-semibold capitalize transition-all duration-500 ease-in-out group-hover:text-white group-hover:bg-[#fa9f00]"
                   >
-                    Affiliate
-                    <span className="absolute left-0 top-0 h-full w-0 bg-white opacity-20 duration-500 transition-all group-hover:w-full"></span>
-                  </Link>
-                </div>
-                <div className="mx-2 group">
-                  <Link
-                    to="/"
-                    className="relative z-[1] block px-5 py-3 m-0 text-white text-sm leading-[18px] font-semibold capitalize transition-all duration-500 ease-in-out group-hover:text-white group-hover:bg-[#fa9f00]"
-                  >
                     Contact us
-                    <span className="absolute left-0 top-0 h-full w-0 bg-white opacity-20 duration-500 transition-all group-hover:w-full"></span>
-                  </Link>
-                </div>
-                <div className="mx-2 group">
-                  <Link
-                    to="/"
-                    className="relative z-[1] block px-5 py-3 m-0 text-white text-sm leading-[18px] font-semibold capitalize transition-all duration-500 ease-in-out group-hover:text-white group-hover:bg-[#fa9f00]"
-                  >
-                    Gift Certificate
                     <span className="absolute left-0 top-0 h-full w-0 bg-white opacity-20 duration-500 transition-all group-hover:w-full"></span>
                   </Link>
                 </div>
@@ -299,18 +290,18 @@ const Header = () => {
 
         {/* Mobile Sidebar Menu */}
         {isMobile && (
-          <div className="block lg:hidden relative">
+          <div className="block lg:hidden relative transition-all duration-300 ease-in-out ">
             <div
-              onClick={() => {setIsMobile(false), setActiveTab(0)}} // Close menu on clicking outside
-              className={`min-h-screen fixed bg-black/40 top-0 z-[999] flex transition-transform duration-700 ease-in-out w-full ${
+              onClick={() => {setIsMobile(false), setActiveTab(0)}}
+              className={`min-h-screen fixed bg-black/40 top-0 z-[999] flex transition-all duration-300 ease-in-out w-full ${
                 isMobile
-                  ? "translate-x-0 opacity-100 left-0"
-                  : "translate-x-[-100%] opacity-0 w-0"
+                  ? "opacity-100 left-0"
+                  : "opacity-0 w-0 left-[-100%]"
               }`}
             >
               {/* Mobile Menu */}
               <div
-                onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside the menu
+                onClick={(e) => e.stopPropagation()}
                 className={`w-[66%] relative bg-white min-h-screen`}
               >
                 <span
@@ -541,6 +532,14 @@ const menuItems = [
   {
     label: "Home",
     href: "/",
+  },
+  {
+    label: "Shop",
+    href: "/shop",
+  },
+  {
+    label: "About Us",
+    href: "/about",
   },
   {
     label: "Affiliate",
