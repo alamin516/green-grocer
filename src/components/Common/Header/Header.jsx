@@ -1,15 +1,18 @@
 import {
   ArrowDropUp,
   ArrowForward,
+  CardGiftcard,
   ChevronRight as ChevronRightIcon,
   Close,
   ExpandMore as ExpandMoreIcon,
   FavoriteBorder,
+  LocalOffer,
+  MailOutline,
   Menu,
   PermIdentity,
   PhoneInTalk,
   Search,
-  ShoppingCart
+  ShoppingCart,
 } from "@mui/icons-material";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
@@ -41,7 +44,6 @@ const Header = () => {
     return () => clearTimeout(timer);
   }, []);
 
-
   return (
     <>
       {/* Preloading */}
@@ -65,46 +67,22 @@ const Header = () => {
         {/* Header Top */}
         <div className="header-top hidden md:block py-3 w-full">
           <div className="section-container px-[15px] mx-auto flex justify-between">
-            <div className="flex items-center text-sm tracking-[0.8px]">
+            <div className="flex items-center text-sm tracking-[0.8px] leading-6">
               <span className="mr-[5px]">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  width="24"
-                >
-                  <path d="M0 0h24v24H0z" fill="none" />
-                  <path d="M21.41 11.58l-9-9C12.05 2.22 11.55 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .55.22 1.05.59 1.42l9 9c.36.36.86.58 1.41.58.55 0 1.05-.22 1.41-.59l7-7c.37-.36.59-.86.59-1.41 0-.55-.23-1.06-.59-1.42zM5.5 7C4.67 7 4 6.33 4 5.5S4.67 4 5.5 4 7 4.67 7 5.5 6.33 7 5.5 7z" />
-                </svg>
+                <LocalOffer className="!text-[20px]" />
               </span>
               get upto 25% cashback on first order
             </div>
-            <div className="flex">
+            <div className="flex leading-6">
               <div className="flex items-center text-sm tracking-[0.8px] px-[10px]">
                 <span className="mr-[5px]">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    height="20"
-                    viewBox="0 0 20 20"
-                    width="24"
-                  >
-                    <path d="M0 0h24v24H0z" fill="none" />
-                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V8l8 5 8-5v10zm-8-7L4 6h16l-8 5z" />
-                  </svg>
+                  <MailOutline className="!text-[20px]" />
                 </span>
                 support@yourstore.com
               </div>
               <div className="flex items-center gap-1 ml-[10px] text-sm tracking-[0.8px] relative after:absolute after:h-[15px] after:w-[1px] after:border-l after:border-[rgba(0,0,0,0.3)] after:left-[-10px] after:top-0 after:bottom-0 after:m-auto after:right-auto">
                 <span className="mr-[5px]">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    height="20"
-                    viewBox="0 0 20 20"
-                    width="24"
-                  >
-                    <path d="M0 0h24v24H0z" fill="none" />
-                    <path d="M20 6h-2.18c.11-.31.18-.65.18-1 0-1.66-1.34-3-3-3-1.05 0-1.96.54-2.5 1.35l-.5.67-.5-.68C10.96 2.54 10.05 2 9 2 7.34 2 6 3.34 6 5c0 .35.07.69.18 1H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-5-2c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zM9 4c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm11 15H4v-2h16v2zm0-5H4V8h5.08L7 10.83 8.62 12 11 8.76l1-1.36 1 1.36L15.38 12 17 10.83 14.92 8H20v6z" />
-                  </svg>
+                <CardGiftcard className="!text-[20px]" />
                 </span>
                 Gift Certificates
               </div>
@@ -147,7 +125,7 @@ const Header = () => {
                 </div>
                 <div className="mx-2 group">
                   <Link
-                    to="/"
+                    to="/contact"
                     className="relative z-[1] block px-5 py-3 m-0 text-white text-sm leading-[18px] font-semibold capitalize transition-all duration-500 ease-in-out group-hover:text-white group-hover:bg-[#fa9f00]"
                   >
                     Contact us
@@ -177,16 +155,12 @@ const Header = () => {
                   </Link>
                 </li>
                 <li>
-                  <div
-                    className="w-[56px] h-[46px] flex justify-center items-center text-center cursor-pointer relative text-white "
-                  >
+                  <div className="w-[56px] h-[46px] flex justify-center items-center text-center cursor-pointer relative text-white ">
                     <PermIdentity />
                   </div>
                 </li>
                 <li>
-                  <div
-                    className="md:w-[81px] h-[46px] flex justify-center items-center text-center cursor-pointer relative text-white"
-                  >
+                  <div className="md:w-[81px] h-[46px] flex justify-center items-center text-center cursor-pointer relative text-white">
                     <ShoppingCart
                       style={{ fontSize: "24px", margin: "0  auto" }}
                     />
@@ -231,19 +205,23 @@ const Header = () => {
                 }`}
               >
                 <ul>
-                  {[1,1,1,1,1,1,1,1,1,1].map((i)=>  
-                  <li key={i}>
-                    <Link
-                      to="#"
-                      className="block w-full text-sm font-semibold leading-[30px] px-5 py-2.5 capitalize relative"
-                    >
-                      <span className="pr-2.5">
-                        <ArrowForward fontSize="13px" className="font-normal" />
-                      </span>
-                      All Shop
-                      <span className="absolute w-[90%] bottom-0 left-0 m-auto right-0 border-b-[#eee] border-b"></span>
-                    </Link>
-                  </li>)}
+                  {[1, 1, 1, 1, 1, 1, 1, 1, 1, 1].map((i) => (
+                    <li key={i}>
+                      <Link
+                        to="#"
+                        className="block w-full text-sm font-semibold leading-[30px] px-5 py-2.5 capitalize relative"
+                      >
+                        <span className="pr-2.5">
+                          <ArrowForward
+                            fontSize="13px"
+                            className="font-normal"
+                          />
+                        </span>
+                        All Shop
+                        <span className="absolute w-[90%] bottom-0 left-0 m-auto right-0 border-b-[#eee] border-b"></span>
+                      </Link>
+                    </li>
+                  ))}
                 </ul>
               </div>
             </div>
@@ -279,7 +257,10 @@ const Header = () => {
                 </div>
                 <div className="pl-2.5">
                   <h5 className="mb-1 text-sm font-semibold">Whatsapp:</h5>
-                  <Link to="tel:09277077088" className="text-base font-semibold">
+                  <Link
+                    to="tel:09277077088"
+                    className="text-base font-semibold"
+                  >
                     1-999-564-666
                   </Link>
                 </div>
@@ -290,13 +271,15 @@ const Header = () => {
 
         {/* Mobile Sidebar Menu */}
         {isMobile && (
-          <div className="block lg:hidden relative transition-all duration-300 ease-in-out ">
+          <div
+            className={`block lg:hidden relative transition-all duration-300 ease-in-out`}
+          >
             <div
-              onClick={() => {setIsMobile(false), setActiveTab(0)}}
+              onClick={() => {
+                setIsMobile(false), setActiveTab(0);
+              }}
               className={`min-h-screen fixed bg-black/40 top-0 z-[999] flex transition-all duration-300 ease-in-out w-full ${
-                isMobile
-                  ? "opacity-100 left-0"
-                  : "opacity-0 w-0 left-[-100%]"
+                isMobile ? "opacity-100 left-0" : "opacity-0 w-0 left-[-100%]"
               }`}
             >
               {/* Mobile Menu */}
@@ -308,16 +291,16 @@ const Header = () => {
                   onClick={() => setIsMobile(false)}
                   className={`absolute -right-10 flex items-center justify-center w-10 h-10 top-3 bg-white rounded-r-lg transition-transform duration-700 ease-in-out `}
                 >
-                  <Close
-                    className={`${
-                      isMobile ? "rotate-90" : "rotate-0"
-                    }`}
-                  />
+                  <Close className={`${isMobile ? "rotate-90" : "rotate-0"}`} />
                 </span>
 
                 <div className="bg-[#008459] text-center p-[5px]">
                   <Link to="/">
-                    <img src={Logo} alt="" className="h-[50px] w-full object-contain" />
+                    <img
+                      src={Logo}
+                      alt=""
+                      className="h-[50px] w-full object-contain"
+                    />
                   </Link>
                 </div>
                 <div className="grid grid-cols-2 gap-0 p-5 ">
@@ -452,54 +435,56 @@ const Header = () => {
                               </button>
                               {openDropdown === item.name && (
                                 <div className="transition-opacity duration-300 ease-in-out">
-                                  {item?.sub_category.map((subItem, subIndex) => (
-                                    <div
-                                      key={subIndex}
-                                      className="relative ml-4"
-                                    >
-                                      {subItem?.dropdown ? (
-                                        <>
-                                          <button
-                                            className="flex items-center px-5 py-3 text-sm font-semibold capitalize transition-all"
-                                            onClick={() =>
-                                              handleSubDropdownToggle(
-                                                subItem.label
-                                              )
-                                            }
-                                          >
-                                            {subItem.name}
-                                            <ChevronRightIcon
-                                              className="ml-2"
-                                              fontSize="small"
-                                            />
-                                          </button>
-                                          {openSubDropdown ===
-                                            subItem.label && (
-                                            <div className="transition-opacity duration-300 ease-in-out">
-                                              {subItem.dropdown.map(
-                                                (subSubItem, subSubIndex) => (
-                                                  <Link
-                                                    key={subSubIndex}
-                                                    to={subSubItem.href}
-                                                    className="block px-5 py-3 text-sm font-semibold capitalize text-gray-800"
-                                                  >
-                                                    {subSubItem.name}
-                                                  </Link>
+                                  {item?.sub_category.map(
+                                    (subItem, subIndex) => (
+                                      <div
+                                        key={subIndex}
+                                        className="relative ml-4"
+                                      >
+                                        {subItem?.dropdown ? (
+                                          <>
+                                            <button
+                                              className="flex items-center px-5 py-3 text-sm font-semibold capitalize transition-all"
+                                              onClick={() =>
+                                                handleSubDropdownToggle(
+                                                  subItem.label
                                                 )
-                                              )}
-                                            </div>
-                                          )}
-                                        </>
-                                      ) : (
-                                        <Link
-                                          to={subItem.href}
-                                          className="block px-5 py-3 text-sm font-semibold capitalize text-gray-800"
-                                        >
-                                          {subItem?.name}
-                                        </Link>
-                                      )}
-                                    </div>
-                                  ))}
+                                              }
+                                            >
+                                              {subItem.name}
+                                              <ChevronRightIcon
+                                                className="ml-2"
+                                                fontSize="small"
+                                              />
+                                            </button>
+                                            {openSubDropdown ===
+                                              subItem.label && (
+                                              <div className="transition-opacity duration-300 ease-in-out">
+                                                {subItem.dropdown.map(
+                                                  (subSubItem, subSubIndex) => (
+                                                    <Link
+                                                      key={subSubIndex}
+                                                      to={subSubItem.href}
+                                                      className="block px-5 py-3 text-sm font-semibold capitalize text-gray-800"
+                                                    >
+                                                      {subSubItem.name}
+                                                    </Link>
+                                                  )
+                                                )}
+                                              </div>
+                                            )}
+                                          </>
+                                        ) : (
+                                          <Link
+                                            to={subItem.href}
+                                            className="block px-5 py-3 text-sm font-semibold capitalize text-gray-800"
+                                          >
+                                            {subItem?.name}
+                                          </Link>
+                                        )}
+                                      </div>
+                                    )
+                                  )}
                                 </div>
                               )}
                             </>
@@ -516,7 +501,6 @@ const Header = () => {
                     </div>
                   </>
                 )}
-
               </div>
             </div>
           </div>
@@ -579,7 +563,7 @@ const categories = [
       { _id: 12, name: "All Fresh Vegetables" },
       { _id: 13, name: "All Breakfast & Dairy" },
       { _id: 14, name: "All Fresh Juice" },
-      {_id: 1, name: "View All"}
+      { _id: 1, name: "View All" },
     ],
   },
   {
@@ -589,7 +573,7 @@ const categories = [
       { _id: 21, name: "Milk" },
       { _id: 22, name: "Cheese" },
       { _id: 23, name: "Yogurt" },
-      {_id: 1, name: "View All"}
+      { _id: 1, name: "View All" },
     ],
   },
   {
@@ -599,7 +583,7 @@ const categories = [
       { _id: 31, name: "Leafy Greens" },
       { _id: 32, name: "Root Vegetables" },
       { _id: 33, name: "Cruciferous Vegetables" },
-      {_id: 1, name: "View All"}
+      { _id: 1, name: "View All" },
     ],
   },
   {
@@ -609,7 +593,7 @@ const categories = [
       { _id: 41, name: "Cereal" },
       { _id: 42, name: "Oats" },
       { _id: 43, name: "Butter" },
-      {_id: 1, name: "View All"}
+      { _id: 1, name: "View All" },
     ],
   },
   {
