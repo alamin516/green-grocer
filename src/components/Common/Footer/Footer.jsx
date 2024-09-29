@@ -1,9 +1,37 @@
 import { LocalPhone, LocationOn, MailOutline } from "@mui/icons-material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import icon1 from "../../../assets/images/icons/download.svg";
 
 const Footer = () => {
+  const [links, setLinks] = useState([]);
+  const [category, setCategory] = useState([]);
+  const [brand, setBrand] = useState([]);
+
+  useEffect(() => {
+    const fetchLinksAndCategories = async () => {
+      try {
+        const [linksRes, categoryRes, brandRes] = await Promise.all([
+          fetch("/link.json"),
+          fetch("/category.json"),
+          fetch("/brand.json")
+        ]);
+
+        const linkData = await linksRes.json();
+        const categoryData = await categoryRes.json();
+        const brandData = await brandRes.json();
+
+        setLinks(linkData.footer_links);
+        setCategory(categoryData.categories);
+        setBrand(brandData.brands);
+      } catch {
+        console.log("error");
+      }
+    };
+    fetchLinksAndCategories();
+  }, []);
+
+
   return (
     <div className="footer border-t border-[#f5f5f5]">
       {/* Footer top */}
@@ -48,10 +76,13 @@ const Footer = () => {
                   Navigate
                 </h5>
                 <ul className="grid grid-cols-2 gap-x-5">
-                  {Array.from({ length: 10 }).map((_, i) => (
+                  {links.map((link, i) => (
                     <li key={i}>
-                      <Link className="text-sm leading-6 text-[#666]" to="/">
-                        Home
+                      <Link
+                        className="text-sm leading-6 text-[#666]"
+                        to={`/${link.url}`}
+                      >
+                        {link.text}
                       </Link>
                     </li>
                   ))}
@@ -64,10 +95,13 @@ const Footer = () => {
                   Categories
                 </h5>
                 <ul className="grid grid-cols-2 gap-x-5">
-                  {Array.from({ length: 10 }).map((_, i) => (
+                  {category.map((category, i) => (
                     <li key={i}>
-                      <Link className="text-sm leading-6 text-[#666]" to="/">
-                        Category
+                      <Link
+                        className="text-sm leading-6 text-[#666]"
+                        to={`/${category.id}`}
+                      >
+                        {category.name}
                       </Link>
                     </li>
                   ))}
@@ -80,20 +114,13 @@ const Footer = () => {
                   Popular brands
                 </h5>
                 <ul className="">
-                  {[
-                    "OFS",
-                    "Sagaform",
-                    "Mountain Climbing",
-                    "Premium Quality",
-                    "Trendyzone",
-                    "lenovo mobile",
-                  ].map((brand, i) => (
+                  {brand.slice(0,8).map((brand, i) => (
                     <li key={i} className="w-auto float-left mr-[5px] mb-[5px]">
                       <Link
                         className="block w-auto text-sm leading-6 text-[#666] bg-[#f7f7f7] px-4 py-[7px] rounded-[5px]"
-                        to="/"
+                        to={`/${brand.id}`}
                       >
-                        {brand}
+                        {brand.name}
                       </Link>
                     </li>
                   ))}

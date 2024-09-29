@@ -1,0 +1,41 @@
+{
+  "header_links": [],
+  "footer_links": [
+    {
+      "text": "About Us",
+      "url": "about"
+    },
+    {
+        "text": "Terms of Condition",
+        "url": "terms-and-condition"
+    },
+    {
+      "text": "Contact Us",
+      "url": "contact"
+    },
+    {
+      "text": "Return Policy",
+      "url": "return-privacy"
+    },
+    {
+      "text": "Blog",
+      "url": "blog"
+    },
+    {
+        "text": "Faq",
+        "url": "faq"
+    },
+    {
+      "text": "Support",
+      "url": "support"
+    },
+    {
+      "text": "Delivery Information",
+      "url": "delivery-information"
+    },
+    {
+      "text": "Shipping & Returns",
+      "url": "shipping-and-returns"
+    }
+  ]
+}

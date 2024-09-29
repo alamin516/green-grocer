@@ -1,0 +1,61 @@
+{
+    "brands": [
+      {
+        "id": 1,
+        "name": "Shashya Prabartana",
+        "category": "Organic Grocery & Produce",
+        "description": "A pioneer in Bangladesh's organic movement, offering a wide range of organic vegetables, fruits, and grocery items.",
+        "logo_url": "/images/brands/shashya_prabartana.png"
+      },
+      {
+        "id": 2,
+        "name": "Kazi & Kazi Tea",
+        "category": "Organic Tea",
+        "description": "The only internationally certified organic tea producer in Bangladesh, offering premium tea varieties.",
+        "logo_url": "/images/brands/kazi_kazi_tea.png"
+      },
+      {
+        "id": 3,
+        "name": "Prakritik Krishi",
+        "category": "Organic Grocery",
+        "description": "Offers locally grown, chemical-free organic vegetables, fruits, and grains to support sustainable farming.",
+        "logo_url": "/images/brands/prakritik_krishi.png"
+      },
+      {
+        "id": 4,
+        "name": "Nagad Narayan",
+        "category": "Organic Honey & Dairy",
+        "description": "A brand specializing in organic honey and dairy products sourced from rural farms in Bangladesh.",
+        "logo_url": "/images/brands/nagad_narayan.png"
+      },
+      {
+        "id": 5,
+        "name": "Ispahani Organic",
+        "category": "Organic Tea & Spices",
+        "description": "A well-known brand for organic tea and spices in Bangladesh, promoting health-conscious products.",
+        "logo_url": "/images/brands/ispahani_organic.png"
+      },
+      {
+        "id": 6,
+        "name": "Fresh Organic",
+        "category": "Organic Grains & Pulses",
+        "description": "One of the leading brands offering organic grains, pulses, and other grocery items in Bangladesh.",
+        "logo_url": "/images/brands/fresh_organic.png"
+      },
+      {
+        "id": 7,
+        "name": "Jeevan Jaan",
+        "category": "Organic Health Products",
+        "description": "Specializes in organic superfoods, herbal supplements, and health products for a better lifestyle.",
+        "logo_url": "/images/brands/jeevan_jaan.png"
+      },
+      {
+        "id": 8,
+        "name": "Apon Organic",
+        "category": "Organic Grocery & Beauty Products",
+        "description": "A popular brand offering organic groceries as well as natural beauty and skincare products.",
+        "logo_url": "/images/brands/apon_organic.png"
+      }
+    ]
+  }
+  
