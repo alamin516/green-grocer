@@ -1,0 +1,106 @@
+{
+    "categories": [
+      {
+        "id": 1,
+        "name": "Fruits",
+        "subcategories": [
+          { "id": 101, "name": "Citrus Fruits" },
+          { "id": 102, "name": "Berries" },
+          { "id": 103, "name": "Tropical Fruits" },
+          { "id": 104, "name": "Stone Fruits" },
+          { "id": 105, "name": "Apples & Pears" }
+        ]
+      },
+      {
+        "id": 2,
+        "name": "Vegetables",
+        "subcategories": [
+          { "id": 201, "name": "Leafy Greens" },
+          { "id": 202, "name": "Root Vegetables" },
+          { "id": 203, "name": "Cruciferous Vegetables" },
+          { "id": 204, "name": "Marrow Vegetables" },
+          { "id": 205, "name": "Allium Vegetables" }
+        ]
+      },
+      {
+        "id": 3,
+        "name": "Dairy & Eggs",
+        "subcategories": [
+          { "id": 301, "name": "Milk" },
+          { "id": 302, "name": "Cheese" },
+          { "id": 303, "name": "Yogurt" },
+          { "id": 304, "name": "Eggs" },
+          { "id": 305, "name": "Butter & Ghee" }
+        ]
+      },
+      {
+        "id": 4,
+        "name": "Bakery",
+        "subcategories": [
+          { "id": 401, "name": "Breads" },
+          { "id": 402, "name": "Pastries" },
+          { "id": 403, "name": "Cakes & Cookies" }
+        ]
+      },
+      {
+        "id": 5,
+        "name": "Pantry Staples",
+        "subcategories": [
+          { "id": 501, "name": "Grains & Rice" },
+          { "id": 502, "name": "Pasta" },
+          { "id": 503, "name": "Nuts & Seeds" },
+          { "id": 504, "name": "Oils & Vinegar" },
+          { "id": 505, "name": "Spices & Seasonings" }
+        ]
+      },
+      {
+        "id": 6,
+        "name": "Meat & Seafood",
+        "subcategories": [
+          { "id": 601, "name": "Organic Meat" },
+          { "id": 602, "name": "Poultry" },
+          { "id": 603, "name": "Seafood" }
+        ]
+      },
+      {
+        "id": 7,
+        "name": "Beverages",
+        "subcategories": [
+          { "id": 701, "name": "Juices" },
+          { "id": 702, "name": "Teas & Coffees" },
+          { "id": 703, "name": "Plant-based Milks" },
+          { "id": 704, "name": "Smoothies" }
+        ]
+      },
+      {
+        "id": 8,
+        "name": "Snacks",
+        "subcategories": [
+          { "id": 801, "name": "Organic Chips" },
+          { "id": 802, "name": "Dried Fruits" },
+          { "id": 803, "name": "Nuts & Trail Mixes" },
+          { "id": 804, "name": "Energy Bars" }
+        ]
+      },
+      {
+        "id": 9,
+        "name": "Personal Care",
+        "subcategories": [
+          { "id": 901, "name": "Organic Skincare" },
+          { "id": 902, "name": "Shampoos & Conditioners" },
+          { "id": 903, "name": "Soap & Body Wash" },
+          { "id": 904, "name": "Toothpaste" }
+        ]
+      },
+      {
+        "id": 10,
+        "name": "Household Items",
+        "subcategories": [
+          { "id": 1001, "name": "Cleaning Supplies" },
+          { "id": 1002, "name": "Compostable Products" },
+          { "id": 1003, "name": "Recycled Paper Products" }
+        ]
+      }
+    ]
+  }
+  
