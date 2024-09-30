@@ -9,7 +9,7 @@ const Footer = () => {
   const [brand, setBrand] = useState([]);
 
   useEffect(() => {
-    const fetchLinksAndCategories = async () => {
+    const fetchData = async () => {
       try {
         const [linksRes, categoryRes, brandRes] = await Promise.all([
           fetch("/link.json"),
@@ -28,7 +28,7 @@ const Footer = () => {
         console.log("error");
       }
     };
-    fetchLinksAndCategories();
+    fetchData();
   }, []);
 
 

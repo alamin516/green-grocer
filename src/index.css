@@ -68,7 +68,13 @@ h6 {
   }
 }
 
-@media (min-width: 992px) and (max-width:1199px) {
+@media (min-width: 1081px) and (max-width:1199px) {
+  .section-container {
+      width:1060px
+  }
+}
+
+@media (min-width: 992px) and (max-width:1080px) {
   .section-container {
       width:970px
   }

@@ -1,4 +1,5 @@
 import {
+  Add,
   ArrowDropUp,
   ArrowForward,
   CardGiftcard,
@@ -7,19 +8,22 @@ import {
   ExpandMore as ExpandMoreIcon,
   FavoriteBorder,
   LocalOffer,
+  LockOpen,
   MailOutline,
   Menu,
   PermIdentity,
+  Person,
   PhoneInTalk,
   Search,
   ShoppingCart,
 } from "@mui/icons-material";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Loading from "../../../assets/images/loading.webp";
+import LoadingImage from "../../../assets/images/loading.webp";
 import Logo from "../../../assets/images/logo_green_grocer.webp";
 import "./Header.css";
 import StickyHeader from "./StickyHeader";
+import Loading from "../../Loading/Loading";
 
 const Header = () => {
   const [loading, setLoading] = useState(true);
@@ -28,6 +32,11 @@ const Header = () => {
   const [activeTab, setActiveTab] = useState(0);
   const [openDropdown, setOpenDropdown] = useState(null);
   const [openSubDropdown, setOpenSubDropdown] = useState(null);
+  const [more, setMore] = useState(3);
+  const [less, setLess] = useState(true);
+  const [openAccount, setOpenAccount] = useState(false);
+  const [viewCart, setViewCart] = useState(false);
+  const [cartLoading, setCartLoading] = useState(false);
 
   const handleDropdownToggle = (menu) => {
     setOpenDropdown(openDropdown === menu ? null : menu);
@@ -54,13 +63,19 @@ const Header = () => {
             : "opacity-0 scale-100 pointer-events-none"
         }`}
       >
-        <img src={Loading} alt="loading" />
+        <img src={LoadingImage} alt="loading" />
       </div>
 
       <StickyHeader
         openCat={openCat}
         setOpenCat={setOpenCat}
         setIsMobile={setIsMobile}
+        openAccount={openAccount}
+        setOpenAccount={setOpenAccount}
+        viewCart={viewCart}
+        setViewCart={setViewCart}
+        cartLoading={cartLoading}
+        setCartLoading={setCartLoading}
       />
 
       <div className="header">
@@ -82,7 +97,7 @@ const Header = () => {
               </div>
               <div className="flex items-center gap-1 ml-[10px] text-sm tracking-[0.8px] relative after:absolute after:h-[15px] after:w-[1px] after:border-l after:border-[rgba(0,0,0,0.3)] after:left-[-10px] after:top-0 after:bottom-0 after:m-auto after:right-auto">
                 <span className="mr-[5px]">
-                <CardGiftcard className="!text-[20px]" />
+                  <CardGiftcard className="!text-[20px]" />
                 </span>
                 Gift Certificates
               </div>
@@ -154,12 +169,64 @@ const Header = () => {
                     <FavoriteBorder />
                   </Link>
                 </li>
-                <li>
-                  <div className="w-[56px] h-[46px] flex justify-center items-center text-center cursor-pointer relative text-white ">
+                <li
+                  className="relative z-50 cursor-pointer transition-all duration-300 ease-in-out"
+                  onClick={() => setOpenAccount(!openAccount)}
+                >
+                  <div className="w-[56px] h-[46px] flex justify-center items-center text-center cursor-pointer relative text-white">
                     <PermIdentity />
                   </div>
+                  {openAccount && (
+                    <div
+                      className={`absolute ${
+                        openAccount ? "h-auto" : "h-0"
+                      } z-50 bg-white px-[15px] py-2.5 w-[200px] right-0 `}
+                    >
+                      <div className="relative">
+                        <div
+                          className={`block absolute top-[-37px] right-0 text-[30px] text-[#e5e5e5] z-50 `}
+                        >
+                          <ArrowDropUp style={{ fontSize: "30px" }} />
+                        </div>
+                        <ul className="space-y-2">
+                          <li>
+                            <Link
+                              to={"/login"}
+                              className="text-sm text-[#666] leading-6"
+                            >
+                              <span>
+                                <LockOpen className="!text-[18px]" />
+                              </span>{" "}
+                              Sign in
+                            </Link>
+                          </li>
+                          <li>
+                            <Link
+                              to={"/create-account"}
+                              className="text-sm text-[#666] leading-6"
+                            >
+                              <span>
+                                <Person className="!text-[18px]" />
+                              </span>{" "}
+                              Register
+                            </Link>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  )}
                 </li>
-                <li>
+                <li
+                  className="relative z-50"
+                  onClick={() => {
+                    setViewCart(!viewCart);
+                    setCartLoading(true);
+                    const timer = setTimeout(() => {
+                      setCartLoading(false);
+                    }, 2500);
+                    return () => clearTimeout(timer);
+                  }}
+                >
                   <div className="md:w-[81px] h-[46px] flex justify-center items-center text-center cursor-pointer relative text-white">
                     <ShoppingCart
                       style={{ fontSize: "24px", margin: "0  auto" }}
@@ -171,6 +238,28 @@ const Header = () => {
                       Cart
                     </span>
                   </div>
+                  {viewCart && (
+                    <div
+                      className={`absolute ${
+                        viewCart ? "h-auto" : "h-0"
+                      } z-50 bg-white px-[15px] py-2.5  w-[20rem] right-0 `}
+                    >
+                      <div className="relative">
+                        <div
+                          className={`block absolute top-[-37px] right-0 text-[30px] text-[#e5e5e5] z-50 `}
+                        >
+                          <ArrowDropUp style={{ fontSize: "30px" }} />
+                        </div>
+                        {cartLoading ? (
+                          <Loading padding="10px" height="12" width="12"/>
+                        ) : (
+                          <ul className="space-y-2 p-[42px]">
+                            Your cart is empty
+                          </ul>
+                        )}
+                      </div>
+                    </div>
+                  )}
                 </li>
               </ul>
             </div>
@@ -180,7 +269,7 @@ const Header = () => {
         <div className="header-bottom w-full bg-[#007750] py-[10px] mb-[15px] lg:mb-[30px]">
           <div className="section-container px-[15px] mx-auto flex items-center">
             {/* Header Bottom COl-1 */}
-            <div className="cat-menus w-[18%] relative 1100px:block hidden">
+            <div className="cat-menus 1100px:w-[26%] 1200px:[22%] 1300px:w-[18%] relative 1100px:block hidden">
               <div
                 onClick={() => setOpenCat(!openCat)}
                 className="cat-menu-title w-full group px-[10px] py-[18px] bg-[#fa9f00] text-base leading-6 font-semibold uppercase text-white ease-in-out cursor-pointer relative"
@@ -204,29 +293,74 @@ const Header = () => {
                   openCat ? "max-h-[500px] opacity-100" : "max-h-0 opacity-100"
                 }`}
               >
-                <ul>
-                  {[1, 1, 1, 1, 1, 1, 1, 1, 1, 1].map((i) => (
+                <ul className="transition-all duration-300 ease-in-out">
+                  <li>
+                    <Link
+                      onClick={() => setOpenCat(false)}
+                      to="/shop"
+                      className="block w-full text-sm text-[#111] font-semibold leading-[30px] px-5 py-2.5 capitalize relative"
+                    >
+                      <span className="pr-2.5">
+                        <ArrowForward className="!text-[13px] font-normal text-[#666]" />
+                      </span>
+                      All Shop
+                      <span className="absolute w-[90%] bottom-0 left-0 m-auto right-0 border-b-[#eee] border-b"></span>
+                    </Link>
+                  </li>
+                  {categories.slice(1, more).map((category, i) => (
                     <li key={i}>
                       <Link
-                        to="#"
-                        className="block w-full text-sm font-semibold leading-[30px] px-5 py-2.5 capitalize relative"
+                        onClick={() => setOpenCat(false)}
+                        to={`/category/${category._id}`}
+                        className="flex items-center w-full text-sm text-[#111] font-semibold leading-[30px] px-5 py-2.5 capitalize relative transition-all duration-300 ease-in-out group"
                       >
                         <span className="pr-2.5">
-                          <ArrowForward
-                            fontSize="13px"
-                            className="font-normal"
-                          />
+                          <ArrowForward className="!text-[13px] font-normal text-[#666]" />
                         </span>
-                        All Shop
+                        <span className="flex justify-between items-center w-full">
+                          {category.name}{" "}
+                          {category.sub_category && !openDropdown && (
+                            <ChevronRightIcon className="!text-[18px] font-normal text-[#666] group-hover:rotate-90 transform transition-transform duration-300 ease-in-out" />
+                          )}
+                        </span>
                         <span className="absolute w-[90%] bottom-0 left-0 m-auto right-0 border-b-[#eee] border-b"></span>
                       </Link>
                     </li>
                   ))}
+                  <li>
+                    {less ? (
+                      <div
+                        onClick={() => {
+                          setMore(10);
+                          setLess(false);
+                        }}
+                        className="block w-full text-sm text-[#111] font-semibold leading-[30px] px-5 py-2.5 capitalize relative cursor-pointer  transition-all duration-300 ease-in-out"
+                      >
+                        <span className="pr-2.5">
+                          <Add className="!text-[13px] font-normal text-[#666]" />
+                        </span>
+                        More
+                      </div>
+                    ) : (
+                      <div
+                        onClick={() => {
+                          setMore(3);
+                          setLess(true);
+                        }}
+                        className="block w-full text-sm text-[#111] font-semibold leading-[30px] px-5 py-2.5 capitalize relative cursor-pointer  transition-all duration-300 ease-in-out"
+                      >
+                        <span className="pr-2.5">
+                          <Add className="!text-[13px] font-normal text-[#666]" />
+                        </span>
+                        Less
+                      </div>
+                    )}
+                  </li>
                 </ul>
               </div>
             </div>
             {/* Header Bottom COl-2 */}
-            <div className="1100px:w-[66%] w-full 1100px:ml-[15px] bg-white relative">
+            <div className="1100px:w-[54%] 1200px:w-[58%] 1300px:w-[66%] w-full 1100px:ml-[15px] bg-white relative">
               <form>
                 <div>
                   <label htmlFor=""></label>

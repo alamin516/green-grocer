@@ -21,7 +21,7 @@ const Blog = () => {
       <Breadcrumbs pageTitle="Blog" />
 
       <div className="w-full mb-10">
-        <div className="w-full lg:w-[66%] mx-auto px-[15px]">
+        <div className="w-full mx-auto px-[15px]">
           {/* Heading start*/}
           <div>
             <h1 className="page_heading lg:text-[22px] text-lg text-[#222] leading-[34px] font-bold py-1.5 tracking-[0.8] capitalize relative mb-[15px]">
