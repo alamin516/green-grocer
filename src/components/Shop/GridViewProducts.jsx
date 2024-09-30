@@ -18,7 +18,7 @@ const GridViewProducts = ({filteredProducts}) => {
   return (
     <>
     <div className="relative">
-      <div className="grid grid-cols-2 lg:grid-cols-5 gap-[21px]">
+      <div className="grid grid-cols-2 xl:grid-cols-5 992px:grid-cols-3 1000px:grid-cols-4 gap-[21px]">
         {filteredProducts.map((product, i) => {
           const hasAttributes =
             product?.attributes && Object.keys(product.attributes).length > 0;
