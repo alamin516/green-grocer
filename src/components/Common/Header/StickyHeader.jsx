@@ -1,18 +1,40 @@
 import {
+  Add,
   ArrowDropUp,
   ArrowForward,
   FavoriteBorder,
+  LockOpen,
   Menu,
   PermIdentity,
   Person,
   ShoppingCart,
+  ChevronRight,
+  ExitToApp,
 } from "@mui/icons-material";
 import { useEffect, useState } from "react";
 import Logo from "../../../assets/images/logo_green_grocer.webp";
 import { Link } from "react-router-dom";
 import Loading from "../../Loading/Loading";
 
-const StickyHeader = ({ openCat, setOpenCat, setIsMobile, openAccount, setOpenAccount, viewCart, setViewCart, cartLoading, setCartLoading}) => {
+const StickyHeader = ({
+  openCat,
+  setOpenCat,
+  setIsMobile,
+  openAccount,
+  setOpenAccount,
+  viewCart,
+  setViewCart,
+  cartLoading,
+  setCartLoading,
+  categories,
+  less,
+  setLess,
+  more,
+  setMore,
+  openDropdown,
+  handleLogout,
+  user,
+}) => {
   const [isSticky, setIsSticky] = useState(false);
 
   const handleScroll = () => {
@@ -31,11 +53,13 @@ const StickyHeader = ({ openCat, setOpenCat, setIsMobile, openAccount, setOpenAc
   }, []);
 
   return (
-    <div>
+    <div className="md:block hidden">
       <div
         className={`${
-          isSticky ? "top-0 left-0 right-0" : "top-[-100%]"
-        } fixed  header-sticky z-[999] w-full bg-[#008459] py-[5px] transition-all duration-500`}
+          isSticky
+            ? `top-0 ${user?.role === "admin" && "top-[44px]"} left-0 right-0`
+            : "top-[-100%]"
+        } fixed  header-sticky z-[999] w-full bg-[#008459] py-[5px] transition-all duration-500 `}
       >
         <div className="section-container px-[15px] mx-auto flex justify-between items-center">
           <div className="block lg:hidden">
@@ -65,21 +89,69 @@ const StickyHeader = ({ openCat, setOpenCat, setIsMobile, openAccount, setOpenAc
                 openCat ? "max-h-[500px] opacity-100" : "max-h-0 opacity-100"
               }`}
             >
-              <ul>
-                {[1, 1, 1, 1, 1, 1, 1, 1, 1, 1].map((i) => (
+              <ul className="transition-all duration-300 ease-in-out">
+                <li>
+                  <Link
+                    onClick={() => setOpenCat(false)}
+                    to="/shop"
+                    className="block w-full text-sm text-[#111] font-semibold leading-[30px] px-5 py-2.5 capitalize relative"
+                  >
+                    <span className="pr-2.5">
+                      <ArrowForward className="!text-[13px] font-normal text-[#666]" />
+                    </span>
+                    All Shop
+                    <span className="absolute w-[90%] bottom-0 left-0 m-auto right-0 border-b-[#eee] border-b"></span>
+                  </Link>
+                </li>
+                {categories.slice(1, more).map((category, i) => (
                   <li key={i}>
                     <Link
-                      to="#"
-                      className="block w-full text-sm font-semibold leading-[30px] px-5 py-2.5 capitalize relative"
+                      onClick={() => setOpenCat(false)}
+                      to={`/category/${category._id}`}
+                      className="flex items-center w-full text-sm text-[#111] font-semibold leading-[30px] px-5 py-2.5 capitalize relative transition-all duration-300 ease-in-out group"
                     >
                       <span className="pr-2.5">
-                        <ArrowForward fontSize="13px" className="font-normal" />
+                        <ArrowForward className="!text-[13px] font-normal text-[#666]" />
                       </span>
-                      All Shop
+                      <span className="flex justify-between items-center w-full">
+                        {category.name}{" "}
+                        {category.sub_category && !openDropdown && (
+                          <ChevronRight className="!text-[18px] font-normal text-[#666] group-hover:rotate-90 transform transition-transform duration-300 ease-in-out" />
+                        )}
+                      </span>
                       <span className="absolute w-[90%] bottom-0 left-0 m-auto right-0 border-b-[#eee] border-b"></span>
                     </Link>
                   </li>
                 ))}
+                <li>
+                  {less ? (
+                    <div
+                      onClick={() => {
+                        setMore(10);
+                        setLess(false);
+                      }}
+                      className="block w-full text-sm text-[#111] font-semibold leading-[30px] px-5 py-2.5 capitalize relative cursor-pointer  transition-all duration-300 ease-in-out"
+                    >
+                      <span className="pr-2.5">
+                        <Add className="!text-[13px] font-normal text-[#666]" />
+                      </span>
+                      More
+                    </div>
+                  ) : (
+                    <div
+                      onClick={() => {
+                        setMore(3);
+                        setLess(true);
+                      }}
+                      className="block w-full text-sm text-[#111] font-semibold leading-[30px] px-5 py-2.5 capitalize relative cursor-pointer  transition-all duration-300 ease-in-out"
+                    >
+                      <span className="pr-2.5">
+                        <Add className="!text-[13px] font-normal text-[#666]" />
+                      </span>
+                      Less
+                    </div>
+                  )}
+                </li>
               </ul>
             </div>
           </div>
@@ -140,87 +212,151 @@ const StickyHeader = ({ openCat, setOpenCat, setIsMobile, openAccount, setOpenAc
                 </Link>
               </li>
               <li
-                className="relative z-50 cursor-pointer transition-all duration-300 ease-in-out"
-                onClick={() => setOpenAccount(!openAccount)}
-              >
-                <div className="w-[56px] h-[46px] flex justify-center items-center text-center cursor-pointer relative text-white">
-                  <PermIdentity />
-                </div>
-                {openAccount && (
-                  <div
-                    className={`absolute ${
-                      openAccount ? "h-auto" : "h-0"
-                    } z-50 bg-white px-[15px] py-2.5 w-[200px] right-0 `}
-                  >
-                    <div className="relative">
-                      <div
-                        className={`block absolute top-[-37px] right-0 text-[30px] text-[#e5e5e5] z-50 `}
-                      >
-                        <ArrowDropUp style={{ fontSize: "30px" }} />
-                      </div>
-                      <ul className="space-y-2">
-                        
-                        <li>
-                          <Link
-                            to={"/create-account"}
-                            className="text-sm text-[#666] leading-6"
-                          >
-                            <span>
-                              <Person className="!text-[18px]" />
-                            </span>{" "}
-                            Register
-                          </Link>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                )}
-              </li>
-              <li
-                  className="relative z-50"
+                  className="relative z-50 cursor-pointer transition-all duration-300 ease-in-out"
                   onClick={() => {
-                    setViewCart(!viewCart);
-                    setCartLoading(true);
-                    const timer = setTimeout(() => {
-                      setCartLoading(false);
-                    }, 2500);
-                    return () => clearTimeout(timer);
+                    setOpenAccount(!openAccount);
+                    setViewCart(false);
                   }}
                 >
-                  <div className="md:w-[81px] h-[46px] flex justify-center items-center text-center cursor-pointer relative text-white">
-                    <ShoppingCart
-                      style={{ fontSize: "24px", margin: "0  auto" }}
-                    />
-                    <span className="flex items-center justify-center md:border-2 bg-[#008459] lg:bg-transparent border-white rounded-full text-[12px] h-5 w-5 z-10 text-center leading-4 absolute top-0 md:left-7 left-3">
-                      0
-                    </span>
-                    <span className="font-semibold text-base hidden md:block">
-                      Cart
-                    </span>
+                  <div className="w-[56px] h-[46px] flex justify-center items-center text-center cursor-pointer relative text-white">
+                    {user ? (
+                      <img
+                        src={`${import.meta.env.VITE_API_URL}/${user.image}`}
+                        className="w-[35px] border-1 border-[##fff] bg-white/90 rounded-full"
+                        alt="User"
+                      />
+                    ) : (
+                      <PermIdentity />
+                    )}
                   </div>
-                  {viewCart && (
+                  {openAccount && (
                     <div
                       className={`absolute ${
-                        viewCart ? "h-auto" : "h-0"
-                      } z-50 bg-white px-[15px] py-2.5 w-[20rem] right-0 lg:top-[60px] shadow-sm`}
+                        openAccount ? "h-auto" : "h-0"
+                      } z-50 bg-white py-2 w-[200px] right-0 shadow-md rounded-md`}
                     >
                       <div className="relative">
                         <div
-                          className={`block absolute top-[-39px] right-0 text-[30px] text-[#e5e5e5] z-50 `}
+                          className={`absolute top-[-37px] hidden right-0 text-[30px] text-[#e5e5e5] z-50 `}
                         >
                           <ArrowDropUp style={{ fontSize: "30px" }} />
                         </div>
-                        {cartLoading ? (
-                          <Loading padding="10px" height="12" width="12"/>
-                        ) : (
-                          <ul className="space-y-2 p-[42px]">
-                            Your cart is empty
-                          </ul>
-                        )}
+                        <ul className="flex flex-col justify-center">
+                          {user && user._id ? (
+                            <>
+                              <li>
+                                <Link
+                                  to="/user/profile"
+                                  className="text-sm text-gray-800 flex items-center gap-1 px-5 py-2 hover:bg-green-500 transition-colors duration-300"
+                                >
+                                  <span>
+                                  <Person style={{ fontSize: "14px" }} /> Profile
+                                  </span>
+                                </Link>
+                              </li>
+                              <li>
+                                <Link
+                                  to="/user/orders"
+                                  className="text-sm text-gray-800 flex items-center gap-1 px-5 py-2 hover:bg-green-500 transition-colors duration-300"
+                                >
+                                  <span>
+                                    <ShoppingCart style={{ fontSize: "14px" }} />
+                                  </span>{" "}
+                                  Orders
+                                </Link>
+                              </li>
+                              <li>
+                                <button
+                                  onClick={handleLogout}
+                                  className="text-sm text-gray-800 flex items-center gap-1 px-5 py-2 hover:bg-green-500 transition-colors duration-300 w-full"
+                                >
+                                  <span>
+                                    <ExitToApp style={{ fontSize: "14px" }} />
+                                  </span>{" "}
+                                  Logout
+                                </button>
+                              </li>
+                            </>
+                          ) : (
+                            <>
+                              <li>
+                                <Link
+                                  to="/login"
+                                  className="text-sm text-gray-800 flex items-center gap-1 px-5 py-2 hover:bg-green-500 transition-colors duration-300 w-full"
+                                >
+                                  <span>
+                                    <LockOpen style={{ fontSize: "14px" }}  />
+                                  </span>{" "}
+                                  Sign in
+                                </Link>
+                              </li>
+                              <li>
+                                <Link
+                                  to="/create-account"
+                                  className="text-sm text-gray-800 flex items-center gap-1 px-5 py-2 hover:bg-green-500 transition-colors duration-300 w-full"
+                                >
+                                  <span>
+                                    <Person style={{ fontSize: "14px" }}  />
+                                  </span>{" "}
+                                  Register
+                                </Link>
+                              </li>
+                            </>
+                          )}
+                        </ul>
                       </div>
                     </div>
                   )}
                 </li>
+              <li
+                className="relative z-50"
+                onClick={() => {
+                  setViewCart(!viewCart);
+                  setOpenAccount(false);
+                  setCartLoading(true);
+                  const timer = setTimeout(() => {
+                    setCartLoading(false);
+                  }, 500);
+                  return () => clearTimeout(timer);
+                }}
+              >
+                <div className="md:w-[81px] h-[46px] flex justify-center items-center text-center cursor-pointer relative text-white rounded-md">
+                  <ShoppingCart
+                    style={{ fontSize: "24px", margin: "0  auto" }}
+                  />
+                  <span className="flex items-center justify-center md:border-2 bg-[#008459] lg:bg-transparent border-white rounded-full text-[12px] h-5 w-5 z-10 text-center leading-4 absolute top-0 md:left-7 left-3">
+                    0
+                  </span>
+                  <span className="font-semibold text-base hidden md:block">
+                    Cart
+                  </span>
+                  {viewCart && (
+                    <div
+                      className={`block absolute top-[31px] right-0 text-[30px] text-[#e5e5e5] z-50`}
+                    >
+                      <ArrowDropUp style={{ fontSize: "30px" }} />
+                    </div>
+                  )}
+                </div>
+                {viewCart && (
+                  <div
+                    onClick={(e) => e.stopPropagation()}
+                    className={`absolute ${
+                      viewCart ? "h-auto" : "h-0"
+                    } z-50 bg-white px-[15px] py-2.5 w-[20rem] right-0 lg:top-[59px] shadow-sm`}
+                  >
+                    <div className="relative">
+                      {cartLoading ? (
+                        <Loading padding="10px" classes={`w-12 h-12`} />
+                      ) : (
+                        <ul className="space-y-2 p-[42px]">
+                          Your cart is empty
+                        </ul>
+                      )}
+                    </div>
+                  </div>
+                )}
+              </li>
             </ul>
           </div>
         </div>

@@ -3,6 +3,7 @@ import Footer from '../components/Common/Footer/Footer'
 import Header from '../components/Common/Header/Header'
 import { Outlet } from 'react-router-dom'
 import Newsletter from '../components/Common/Newsletter'
+import BottomMobileMenu from '../components/Common/BottomMobileMenu/BottomMobileMenu'
 
 const PublicLayout = () => {
   return (
@@ -16,6 +17,7 @@ const PublicLayout = () => {
         <Newsletter/>
         {/* Footer */}
         <Footer/>
+        <BottomMobileMenu/>
         <BackToTopButton/>
     </div>
   )

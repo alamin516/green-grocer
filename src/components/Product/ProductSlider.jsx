@@ -84,7 +84,16 @@ const ProductSlider = () => {
     beforeChange: beforeChange,
     responsive: [
       {
-        breakpoint: 1200,
+        breakpoint: 1440,
+        settings: {
+          slidesToShow: 5,
+          slidesToScroll: 1,
+          nextArrow: <CustomNextArrow />,
+          prevArrow: <CustomPrevArrow />,
+        },
+      },
+      {
+        breakpoint: 1200, 
         settings: {
           slidesToShow: 3,
           slidesToScroll: 1,
@@ -122,8 +131,39 @@ const ProductSlider = () => {
           prevArrow: <CustomPrevArrow currentSlide={currentSlide} />,
         },
       },
+      {
+        breakpoint: 576,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          nextArrow: (
+            <CustomNextArrow
+              currentSlide={currentSlide}
+              slideCount={products?.length}
+              slidesToShow={2}
+            />
+          ),
+          prevArrow: <CustomPrevArrow currentSlide={currentSlide} />,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+          nextArrow: (
+            <CustomNextArrow
+              currentSlide={currentSlide}
+              slideCount={products?.length}
+              slidesToShow={2}
+            />
+          ),
+          prevArrow: <CustomPrevArrow currentSlide={currentSlide} />,
+        },
+      },
     ],
   };
+  
 
   const handleQuickView = (product) => {
     setQuickProduct(product);
