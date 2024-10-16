@@ -5,6 +5,7 @@ import {
   CardGiftcard,
   ChevronRight as ChevronRightIcon,
   Close,
+  ExitToApp,
   ExpandMore as ExpandMoreIcon,
   FavoriteBorder,
   LocalOffer,
@@ -18,14 +19,19 @@ import {
   ShoppingCart,
 } from "@mui/icons-material";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import LoadingImage from "../../../assets/images/loading.webp";
 import Logo from "../../../assets/images/logo_green_grocer.webp";
 import "./Header.css";
 import StickyHeader from "./StickyHeader";
 import Loading from "../../Loading/Loading";
+import { useSelector } from "react-redux";
+import { useLogoutMutation } from "../../../lib/features/auth/authApi";
+import toast from "react-hot-toast";
+import AdminToolbar from "../AdminToolbar";
 
 const Header = () => {
+  const { user } = useSelector((state) => state.auth);
   const [loading, setLoading] = useState(true);
   const [openCat, setOpenCat] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -37,6 +43,9 @@ const Header = () => {
   const [openAccount, setOpenAccount] = useState(false);
   const [viewCart, setViewCart] = useState(false);
   const [cartLoading, setCartLoading] = useState(false);
+  const [logout] = useLogoutMutation();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const handleDropdownToggle = (menu) => {
     setOpenDropdown(openDropdown === menu ? null : menu);
@@ -49,22 +58,41 @@ const Header = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 2500);
+    }, 500);
     return () => clearTimeout(timer);
   }, []);
+
+  const handleLogout = async () => {
+    try {
+      setLoading(true);
+      await logout();
+      toast.success("Logout successfully");
+      navigate("/login");
+    } catch (error) {
+      console.log("Logout failed:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <>
       {/* Preloading */}
-      <div
-        className={`fixed inset-0 flex items-center justify-center bg-white z-[99999] transition-all duration-500 transform ${
-          loading
-            ? "opacity-100 scale-100"
-            : "opacity-0 scale-100 pointer-events-none"
-        }`}
-      >
-        <img src={LoadingImage} alt="loading" />
-      </div>
+      {location.pathname === "/" ? (
+        <div
+          className={`fixed inset-0 flex items-center justify-center bg-white z-[99999] transition-all duration-500 transform ${
+            loading
+              ? "opacity-100 scale-100"
+              : "opacity-0 scale-100 pointer-events-none"
+          }`}
+        >
+          <img src={LoadingImage} alt="loading" />
+        </div>
+      ) : (
+        ""
+      )}
+      {/* Admin Toolbar */}
+      {user?.role === "admin" && <AdminToolbar />}
 
       <StickyHeader
         openCat={openCat}
@@ -76,11 +104,19 @@ const Header = () => {
         setViewCart={setViewCart}
         cartLoading={cartLoading}
         setCartLoading={setCartLoading}
+        less={less}
+        setMore={setMore}
+        more={more}
+        setLess={setLess}
+        openDropdown={openDropdown}
+        categories={categories}
+        handleLogout={handleLogout}
+        user={user}
       />
 
       <div className="header">
         {/* Header Top */}
-        <div className="header-top hidden md:block py-3 w-full">
+        {location.pathname === "/" && <div className="header-top hidden md:block py-3 w-full">
           <div className="section-container px-[15px] mx-auto flex justify-between">
             <div className="flex items-center text-sm tracking-[0.8px] leading-6">
               <span className="mr-[5px]">
@@ -103,7 +139,7 @@ const Header = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div>}
         {/* Header Ccenter */}
         <div className="header-center w-full bg-[#008459]">
           <div className="section-container px-[15px] mx-auto flex justify-between items-center">
@@ -171,46 +207,96 @@ const Header = () => {
                 </li>
                 <li
                   className="relative z-50 cursor-pointer transition-all duration-300 ease-in-out"
-                  onClick={() => setOpenAccount(!openAccount)}
+                  onClick={() => {
+                    setOpenAccount(!openAccount);
+                    setViewCart(false);
+                  }}
                 >
                   <div className="w-[56px] h-[46px] flex justify-center items-center text-center cursor-pointer relative text-white">
-                    <PermIdentity />
+                    {user ? (
+                      <img
+                        src={`${import.meta.env.VITE_API_URL}/${user.image}`}
+                        className="w-[35px] border-1 border-[##fff] bg-white/90 rounded-full"
+                        alt="User"
+                      />
+                    ) : (
+                      <PermIdentity />
+                    )}
                   </div>
                   {openAccount && (
                     <div
                       className={`absolute ${
                         openAccount ? "h-auto" : "h-0"
-                      } z-50 bg-white px-[15px] py-2.5 w-[200px] right-0 `}
+                      } z-50 bg-white py-2 w-[200px] right-0 shadow-md rounded-md`}
                     >
                       <div className="relative">
                         <div
-                          className={`block absolute top-[-37px] right-0 text-[30px] text-[#e5e5e5] z-50 `}
+                          className={`absolute top-[-37px] hidden right-0 text-[30px] text-[#e5e5e5] z-50 `}
                         >
                           <ArrowDropUp style={{ fontSize: "30px" }} />
                         </div>
-                        <ul className="space-y-2">
-                          <li>
-                            <Link
-                              to={"/login"}
-                              className="text-sm text-[#666] leading-6"
-                            >
-                              <span>
-                                <LockOpen className="!text-[18px]" />
-                              </span>{" "}
-                              Sign in
-                            </Link>
-                          </li>
-                          <li>
-                            <Link
-                              to={"/create-account"}
-                              className="text-sm text-[#666] leading-6"
-                            >
-                              <span>
-                                <Person className="!text-[18px]" />
-                              </span>{" "}
-                              Register
-                            </Link>
-                          </li>
+                        <ul className="flex flex-col justify-center">
+                          {user && user._id ? (
+                            <>
+                              <li>
+                                <Link
+                                  to="/user/profile"
+                                  className="text-sm text-gray-800 flex items-center gap-1 px-5 py-2 hover:bg-green-500 transition-colors duration-300"
+                                >
+                                  <span>
+                                  <Person style={{ fontSize: "14px" }} /> Profile
+                                  </span>
+                                </Link>
+                              </li>
+                              <li>
+                                <Link
+                                  to="/user/orders"
+                                  className="text-sm text-gray-800 flex items-center gap-1 px-5 py-2 hover:bg-green-500 transition-colors duration-300"
+                                >
+                                  <span>
+                                    <ShoppingCart style={{ fontSize: "14px" }} />
+                                  </span>{" "}
+                                  Orders
+                                </Link>
+                              </li>
+                              <li>
+                                <button
+                                  onClick={handleLogout}
+                                  className="text-sm text-gray-800 flex items-center gap-1 px-5 py-2 hover:bg-green-500 transition-colors duration-300 w-full"
+                                >
+                                  <span>
+                                    <ExitToApp style={{ fontSize: "14px" }} />
+                                  </span>{" "}
+                                  Logout
+                                </button>
+                              </li>
+                            </>
+                          ) : (
+                            <>
+                              <li>
+                                <Link
+                                  to="/login"
+                                  className="text-sm text-gray-800 flex items-center gap-1 px-5 py-2 hover:bg-green-500 transition-colors duration-300 w-full"
+                                >
+                                  <span>
+                                    <LockOpen style={{ fontSize: "14px" }}  />
+                                  </span>{" "}
+                                  Sign in
+                                </Link>
+                              </li>
+                              <li>
+                                <Link
+                                  to="/create-account"
+                                  className="text-sm text-gray-800 flex items-center gap-1 px-5 py-2 hover:bg-green-500 transition-colors duration-300 w-full"
+                                >
+                                  <span>
+                                    <Person style={{ fontSize: "14px" }}  />
+                                  </span>{" "}
+                                  Register
+                                </Link>
+                              </li>
+                            </>
+                          )}
                         </ul>
                       </div>
                     </div>
@@ -220,14 +306,15 @@ const Header = () => {
                   className="relative z-50"
                   onClick={() => {
                     setViewCart(!viewCart);
+                    setOpenAccount(false);
                     setCartLoading(true);
                     const timer = setTimeout(() => {
                       setCartLoading(false);
-                    }, 2500);
+                    }, 500);
                     return () => clearTimeout(timer);
                   }}
                 >
-                  <div className="md:w-[81px] h-[46px] flex justify-center items-center text-center cursor-pointer relative text-white">
+                  <div className="md:w-[81px] h-[46px] flex justify-center items-center text-center cursor-pointer relative text-white rounded-md">
                     <ShoppingCart
                       style={{ fontSize: "24px", margin: "0  auto" }}
                     />
@@ -237,21 +324,23 @@ const Header = () => {
                     <span className="font-semibold text-base hidden md:block">
                       Cart
                     </span>
+                    {viewCart && (
+                      <div
+                        className={`block absolute top-[20px] right-0 text-[30px] text-[#e5e5e5] z-50`}
+                      >
+                        <ArrowDropUp style={{ fontSize: "30px" }} />
+                      </div>
+                    )}
                   </div>
                   {viewCart && (
                     <div
                       className={`absolute ${
                         viewCart ? "h-auto" : "h-0"
-                      } z-50 bg-white px-[15px] py-2.5  w-[20rem] right-0 `}
+                      } z-50 bg-white px-[15px] py-2.5  w-[20rem] right-0 overflow-hidden`}
                     >
                       <div className="relative">
-                        <div
-                          className={`block absolute top-[-37px] right-0 text-[30px] text-[#e5e5e5] z-50 `}
-                        >
-                          <ArrowDropUp style={{ fontSize: "30px" }} />
-                        </div>
                         {cartLoading ? (
-                          <Loading padding="10px" height="12" width="12"/>
+                          <Loading padding="10px" classes={`w-12 h-12`} />
                         ) : (
                           <ul className="space-y-2 p-[42px]">
                             Your cart is empty
@@ -266,7 +355,7 @@ const Header = () => {
           </div>
         </div>
         {/* Header Bottom */}
-        <div className="header-bottom w-full bg-[#007750] py-[10px] mb-[15px] lg:mb-[30px]">
+        {location.pathname.startsWith("/user/") ? null : <div className="header-bottom w-full bg-[#007750] py-[10px] mb-[15px] lg:mb-[30px]">
           <div className="section-container px-[15px] mx-auto flex items-center">
             {/* Header Bottom COl-1 */}
             <div className="cat-menus 1100px:w-[26%] 1200px:[22%] 1300px:w-[18%] relative 1100px:block hidden">
@@ -401,7 +490,7 @@ const Header = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div>}
 
         {/* Mobile Sidebar Menu */}
         {isMobile && (
