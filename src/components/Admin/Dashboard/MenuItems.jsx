@@ -29,13 +29,14 @@ import {
       ],
     },
     {
-      href: "/admin/products",
+      href: "#",
       icon: <Inventory />,
       label: "Products",
       subItems: [
         { href: "/admin/products", label: "All Products",},
         { href: "/admin/create-product", label: "Create Product",},
         { href: "/admin/product/categories", label: "Categories",},
+        { href: "/admin/product/create-category", label: "Create Category",},
         { href: "/admin/product/tags", label: "Tags"},
         { href: "/admin/product/tags", label: "Brands"},
         { href: "/admin/product/brands", label: "Brands"},

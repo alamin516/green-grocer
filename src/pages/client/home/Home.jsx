@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import BannerSection from "../../../components/Banner/BannerSection";
 import BottomBanner from "../../../components/Banner/BottomBanner";
 import OfferBanner from "../../../components/Banner/OfferBanner";
@@ -8,8 +9,19 @@ import CategorySlide from "../../../components/Category/CategorySlide";
 import NewProducts from "../../../components/Product/NewProducts";
 import ProductSlider from "../../../components/Product/ProductSlider";
 import SEO from "../../../components/Seo";
+import { useGetProductsQuery } from "../../../lib/features/product/productApi";
 
 function Home() {
+  const { data, isLoading, refetch } = useGetProductsQuery({});
+
+  useEffect(() => {
+    if (data) {
+      refetch();
+    }
+  }, [data, refetch]);
+
+  const featuredProducts = data?.payload?.products?.featured_products || [];
+
   return (
     <>
       <SEO
@@ -23,7 +35,7 @@ function Home() {
       <OfferBanner />
       <CategorySlide />
       <SubBanner/>
-      <ProductSlider/>
+      <ProductSlider productsData={featuredProducts} title={"Featured Products"} isLoading={isLoading}/>
       <BestSellers/>
       <BottomBanner/>
       <NewProducts/>

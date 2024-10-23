@@ -4,12 +4,9 @@ import { Link } from "react-router-dom";
 import Ratings from "../Common/Ratings";
 import QuickViewProduct from "../UI/Modals/QuickViewProduct";
 
-const GridViewProducts = ({filteredProducts}) => {
-
+const GridViewProducts = ({ filteredProducts }) => {
   const [openQuickView, setOpenQuickView] = useState(false);
   const [quickProduct, setQuickProduct] = useState({});
-
-  
 
   const handleQuickView = (product) => {
     setQuickProduct(product);
@@ -17,20 +14,23 @@ const GridViewProducts = ({filteredProducts}) => {
 
   return (
     <>
-    <div className="relative">
-      <div className="grid grid-cols-2 xl:grid-cols-5 992px:grid-cols-3 1000px:grid-cols-4 gap-[21px]">
-        {filteredProducts.map((product, i) => {
-          const hasAttributes =
-            product?.attributes && Object.keys(product.attributes).length > 0;
+      <div className="relative">
+        <div className="grid grid-cols-2 xl:grid-cols-5 992px:grid-cols-3 1000px:grid-cols-4 gap-[21px]">
+          {filteredProducts.map((product, i) => {
+            const hasAttributes =
+              product?.attributes && Object.keys(product.attributes).length > 0;
 
-          const isStock = product.stock == 0;
+            const isStock = product.stock_quantity == 0;
 
-          const hasDiscount = product.discount_price > 0;
+            const hasDiscount = product.discount_price > 0;
 
-          return (
-              <div key={i} className="product-card border border-[#e5e5e5] bg-white overflow-hidden group transition-all duration-500 ease-in-out">
+            return (
+              <div
+                key={i}
+                className="product-card border border-[#e5e5e5] bg-white overflow-hidden group transition-all duration-500 ease-in-out"
+              >
                 <figure className="product-figure relative">
-                  <Link to="" className="inline-block">
+                  <Link to={`/product/${product.slug}`} className="inline-block">
                     {hasDiscount && (
                       <span
                         className={`bg-[#fa9f00] rounded-r-full text-white text-[13px]  leading-6 pl-[7px] pr-[11px] py-0 absolute top-5 left-0 z-10`}
@@ -52,15 +52,24 @@ const GridViewProducts = ({filteredProducts}) => {
                       }`}
                     >
                       <img
-                        className="group-hover:opacity-0 transition-all duration-500 ease-in"
-                        src={product.images[0].src}
-                        alt={product.images[0].alt}
+                        className={`${
+                          product?.images?.length > 1
+                            ? "group-hover:opacity-0"
+                            : ""
+                        } transition-all duration-500 ease-in`}
+                        src={
+                          product?.images[0]?.url || "/images/placeholder1.jpg"
+                        }
+                        alt={product?.images[0]?.alt || "Product Image"}
                       />
-                      <img
-                        className="absolute top-0 left-0 image opacity-0 group-hover:opacity-100 transition-all duration-500 ease-in"
-                        src={product.images[1].src}
-                        alt={product.images[1].alt}
-                      />
+
+                      {product?.images?.length > 1 && (
+                        <img
+                          className="absolute top-0 left-0 image opacity-0 group-hover:opacity-100 transition-all duration-500 ease-in"
+                          src={`${product?.images[1]?.url}`}
+                          alt={`${product?.images[1]?.alt}`}
+                        />
+                      )}
                     </div>
                   </Link>
                   <span className="absolute left-0 bottom-0 right-0 border-b-4 border-double border-[#e5e5e5]"></span>
@@ -79,7 +88,7 @@ const GridViewProducts = ({filteredProducts}) => {
                         to={""}
                         className="text-[14px] leading-[18px] text-[#444] whitespace-nowrap"
                       >
-                        {product.name}
+                        {product.title}
                       </Link>
                     </h3>
                   </div>
@@ -166,11 +175,11 @@ const GridViewProducts = ({filteredProducts}) => {
                   </div>
                 </div>
               </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
-    </div>
-    {openQuickView && (
+      {openQuickView && (
         <QuickViewProduct
           product={quickProduct}
           openQuickView={openQuickView}

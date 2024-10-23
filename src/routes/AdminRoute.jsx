@@ -12,7 +12,7 @@ const AdminRoute = ({ children }) => {
   const [showLoading, setShowLoading] = useState(true);
 
   useEffect(() => {
-    const timeout = setTimeout(() => setShowLoading(false), 4000);
+    const timeout = setTimeout(() => setShowLoading(false), 100);
     return () => clearTimeout(timeout);
   }, []);
 

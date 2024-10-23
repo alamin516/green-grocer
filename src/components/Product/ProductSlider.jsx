@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Slider from "react-slick";
 import "./Product.css";
 
@@ -15,21 +15,12 @@ import "slick-carousel/slick/slick-theme.css";
 import "slick-carousel/slick/slick.css";
 import Ratings from "../Common/Ratings";
 import QuickViewProduct from "../UI/Modals/QuickViewProduct";
+import ProductCardSkeleton from "../Loading/ProductCardSkeleton";
 
-const ProductSlider = () => {
+const ProductSlider = ({ productsData, title, isLoading }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [products, setProducts] = useState([]);
   const [openQuickView, setOpenQuickView] = useState(false);
   const [quickProduct, setQuickProduct] = useState({});
-
-  useEffect(() => {
-    const fetchProducts = async () => {
-      const res = await fetch("/product.json");
-      const data = await res.json();
-      setProducts(data.featured);
-    };
-    fetchProducts();
-  }, []);
 
   const CustomPrevArrow = (props) => {
     const { onClick, currentSlide } = props;
@@ -76,7 +67,7 @@ const ProductSlider = () => {
     nextArrow: (
       <CustomNextArrow
         currentSlide={currentSlide}
-        slideCount={products.length}
+        slideCount={productsData.length}
         slidesToShow={6}
       />
     ),
@@ -93,7 +84,7 @@ const ProductSlider = () => {
         },
       },
       {
-        breakpoint: 1200, 
+        breakpoint: 1200,
         settings: {
           slidesToShow: 3,
           slidesToScroll: 1,
@@ -109,7 +100,7 @@ const ProductSlider = () => {
           nextArrow: (
             <CustomNextArrow
               currentSlide={currentSlide}
-              slideCount={products.length}
+              slideCount={productsData.length}
               slidesToShow={2}
             />
           ),
@@ -124,7 +115,7 @@ const ProductSlider = () => {
           nextArrow: (
             <CustomNextArrow
               currentSlide={currentSlide}
-              slideCount={products?.length}
+              slideCount={productsData?.length}
               slidesToShow={2}
             />
           ),
@@ -139,7 +130,7 @@ const ProductSlider = () => {
           nextArrow: (
             <CustomNextArrow
               currentSlide={currentSlide}
-              slideCount={products?.length}
+              slideCount={productsData?.length}
               slidesToShow={2}
             />
           ),
@@ -154,7 +145,7 @@ const ProductSlider = () => {
           nextArrow: (
             <CustomNextArrow
               currentSlide={currentSlide}
-              slideCount={products?.length}
+              slideCount={productsData?.length}
               slidesToShow={2}
             />
           ),
@@ -163,11 +154,24 @@ const ProductSlider = () => {
       },
     ],
   };
-  
 
   const handleQuickView = (product) => {
     setQuickProduct(product);
   };
+
+  if (isLoading) {
+    return (
+      <>
+        <div className="featured-product-slider w-full lg:mb-10 relative">
+          <div className="section-container mx-auto">
+            <div className="pb-[45px] px-[15px] lg:px-0">
+              <ProductCardSkeleton />
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  }
 
   return (
     <>
@@ -175,22 +179,20 @@ const ProductSlider = () => {
         <div className="section-container mx-auto">
           {/* Heading */}
           <div className="px-[15px]">
-            <h1 className="page_heading lg:text-[22px] text-lg text-[#222] leading-[34px] font-bold py-1.5 tracking-[0.8] capitalize relative lg:mb-0">
-              <span className="relative bg-white z-[2] pr-[25px]">
-                Featured Products
-              </span>
+            <h2 className="page_heading lg:text-[22px] text-lg text-[#222] leading-[34px] font-bold py-1.5 tracking-[0.8] capitalize relative lg:mb-0">
+              <span className="relative bg-white z-[2] pr-[25px]">{title}</span>
               <span className="absolute top-1/2 left-0 right-auto w-full h-[3px] bg-[#f5f5f5]"></span>
-            </h1>
+            </h2>
           </div>
 
           {/* Slider Start*/}
           <Slider {...settings} className="pb-[45px] px-[15px] lg:px-0">
-            {products.map((product, i) => {
+            {productsData.map((product, i) => {
               const hasAttributes =
                 product?.attributes &&
                 Object.keys(product.attributes).length > 0;
 
-              const isStock = product.stock == 0;
+              const isStock = product.stock_quantity == 0;
 
               const hasDiscount = product.discount_price > 0;
 
@@ -198,7 +200,10 @@ const ProductSlider = () => {
                 <div key={i}>
                   <div className="product-card mt-[15px] mb-2.5 lg:mx-[15px] mx-[5px] border border-[#e5e5e5] bg-white overflow-hidden group transition-all duration-500 ease-in-out">
                     <figure className="product-figure relative">
-                      <Link to="" className="inline-block">
+                      <Link
+                        to={`/product/${product.slug}`}
+                        className="inline-block"
+                      >
                         {hasDiscount && (
                           <span
                             className={`bg-[#fa9f00] rounded-r-full text-white text-[13px]  leading-6 pl-[7px] pr-[11px] py-0 absolute top-5 left-0 z-10`}
@@ -220,15 +225,25 @@ const ProductSlider = () => {
                           }`}
                         >
                           <img
-                            className="group-hover:opacity-0 transition-all duration-500 ease-in"
-                            src={product.images[0].src}
-                            alt={product.images[0].alt}
+                            className={`${
+                              product?.images?.length > 1
+                                ? "group-hover:opacity-0"
+                                : ""
+                            } transition-all duration-500 ease-in`}
+                            src={
+                              product?.images[0]?.url ||
+                              "/images/placeholder1.jpg"
+                            }
+                            alt={product?.images[0]?.alt || "Product Image"}
                           />
-                          <img
-                            className="image opacity-0 group-hover:opacity-100 transition-all duration-500 ease-in"
-                            src={product.images[1].src}
-                            alt={product.images[1].alt}
-                          />
+
+                          {product?.images?.length > 1 && (
+                            <img
+                              className="absolute top-0 left-0 image opacity-0 group-hover:opacity-100 transition-all duration-500 ease-in"
+                              src={`${product?.images[1]?.url}`}
+                              alt={`${product?.images[1]?.alt}`}
+                            />
+                          )}
                         </div>
                       </Link>
                       <span className="absolute left-0 bottom-0 right-0 border-b-4 border-double border-[#e5e5e5]"></span>
@@ -244,10 +259,10 @@ const ProductSlider = () => {
                       <div className="mt-2.5 mb-1.5 px-2.5 group-hover:opacity-0 transition-all duration-500 ease-in-out">
                         <h3 className="text-ellipsis overflow-hidden transition duration-300">
                           <Link
-                            to={""}
+                            to={`/product/${product.slug}`}
                             className="text-[14px] leading-[18px] text-[#444] whitespace-nowrap"
                           >
-                            {product.name}
+                            {product.title}
                           </Link>
                         </h3>
                       </div>

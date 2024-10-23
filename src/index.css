@@ -182,3 +182,26 @@ h6 {
   background-color: #232734;
   border-radius: 10px;
 }
+
+
+.ql-editor{
+  min-height: 300px;
+}
+
+.myQuil {
+  min-height: 300px;
+  width: 100%;
+  /* border: 1px solid #4b5563; */
+}
+.ql-snow .ql-editor code {
+  background-color: rgb(0 63 241) !important;
+}
+.ql-snow .ql-editor a {
+  color: rgb(0, 233, 241) !important;
+}
+.ql-container.ql-snow {
+  border: 2px solid #4b5563;
+}
+.ql-toolbar {
+  background: #fff;
+}

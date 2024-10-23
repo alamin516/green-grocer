@@ -5,6 +5,7 @@ import ProductRow from "../../../components/Admin/Product/ProductRow";
 import Pagination from "../../../components/Admin/Pagination/Pagination";
 import { HeartBroken } from "@mui/icons-material";
 import SEO from "../../../components/Seo";
+import { useNavigate } from "react-router-dom";
 
 const Products = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -13,6 +14,9 @@ const Products = () => {
   const [bulkAction, setBulkAction] = useState([]);
   const [page, setPage] = useState();
   const [limit, setLimit] = useState();
+  const navigate = useNavigate();
+
+  console.log(selectedProducts)
 
   const {
     data = {},
@@ -25,7 +29,8 @@ const Products = () => {
     search: searchTerm,
   });
 
-  const { products = [], pagination = {} } = data.payload || {};
+  const products = data?.payload?.products?.all_products || [];
+  const pagination = data?.payload?.pagination || {};
 
   const handleSearch = (e) => setSearchTerm(e.target.value);
 
@@ -48,6 +53,7 @@ const Products = () => {
   useEffect(() => {
     refetch();
   }, [refetch, page, limit, sortOption, searchTerm]);
+
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -84,7 +90,7 @@ const Products = () => {
       <div className="p-4">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-lg font-medium">All products</h2>
-          <button className="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-3 rounded-lg">
+          <button onClick={()=> navigate("/admin/create-product")}  className="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-3 rounded-lg">
             Add New Product
           </button>
         </div>
@@ -179,7 +185,7 @@ const Products = () => {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {products.map((product, i) => (
+              {products?.map((product, i) => (
                 <ProductRow
                   key={i}
                   product={product}

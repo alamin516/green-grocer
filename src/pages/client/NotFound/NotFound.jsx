@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import Header from "../../../components/Common/Header/Header";
 import Footer from "../../../components/Common/Footer/Footer";
@@ -6,8 +6,19 @@ import Breadcrumbs from "../../../components/Common/Breadcrumbs";
 import errorImage from "../../../assets/images/error-404.webp";
 import ProductSlider from "../../../components/Product/ProductSlider";
 import SEO from "../../../components/Seo";
+import { useGetProductsQuery } from "../../../lib/features/product/productApi";
 
 const NotFound = () => {
+  const { data, isLoading, refetch } = useGetProductsQuery({});
+
+  useEffect(() => {
+    if (data) {
+      refetch();
+    }
+  }, [data, refetch]);
+
+  const featuredProducts = data?.payload?.products?.featured_products || [];
+
   return (
     <>
       <SEO title="404 Not Found" />
@@ -38,7 +49,7 @@ const NotFound = () => {
           </button>
         </div>
       </div>
-      <ProductSlider />
+      <ProductSlider productsData={featuredProducts} title={"Featured Products"} isLoading={isLoading}/>
       <Footer />
     </>
   );
