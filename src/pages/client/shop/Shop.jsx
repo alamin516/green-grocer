@@ -5,27 +5,29 @@ import ShopSidebar from "../../../components/Shop/ShopSidebar";
 import { ViewList, ViewModule } from "@mui/icons-material";
 import GridViewProducts from "../../../components/Shop/GridViewProducts";
 import ListViewProducts from "../../../components/Shop/ListViewProducts";
+import { useGetProductsQuery } from "../../../lib/features/product/productApi";
+import Loading from "../../../components/Loading/Loading";
 
 const Shop = () => {
   const [isGrid, setIsGrid] = useState(true);
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
 
+  const { data, isLoading, refetch } = useGetProductsQuery({});
+
   useEffect(() => {
-    const fetchProducts = async () => {
-      const res = await fetch("/product.json");
-      const data = await res.json();
-      setProducts(data.featured);
-      setFilteredProducts(data.featured);
-    };
-    fetchProducts();
-  }, []);
+    if (data) {
+      setProducts(data.payload?.products);
+      setFilteredProducts(data.payload?.products?.all_products);
+      refetch();
+    }
+  }, [data, refetch]);
 
   const handleFilterChange = (filters) => {
     let updatedProducts = products;
 
     // Filter by brand
-    if (filters.brand.length > 0) {
+    if (filters?.brand?.length > 0) {
       updatedProducts = updatedProducts.filter((product) =>
         product.attributes.some((attribute) =>
           filters.brand.some((brand) => attribute.brand.includes(brand))
@@ -34,7 +36,7 @@ const Shop = () => {
     }
 
     // Filter by color
-    if (filters.color.length > 0) {
+    if (filters?.color?.length > 0) {
       updatedProducts = updatedProducts.filter((product) =>
         product.attributes.some((attribute) =>
           filters.color.some((color) => attribute.color.includes(color))
@@ -56,14 +58,14 @@ const Shop = () => {
     }
 
     // Filter by rating
-    if (filters.rating.length > 0) {
+    if (filters?.rating?.length > 0) {
       updatedProducts = updatedProducts.filter((product) =>
         filters.rating.includes(product.rating)
       );
     }
 
     // Filter by rating
-    if (filters.other.length > 0) {
+    if (filters?.other?.length > 0) {
       if (
         filters.other.includes("Is Stock") ||
         filters.other.includes("Discount")
@@ -85,7 +87,7 @@ const Shop = () => {
 
       if (filters.other.includes("Stock Out")) {
         updatedProducts = updatedProducts.filter(
-          (product) => product.stock <= 0
+          (product) => product.stock_quantity <= 0
         );
         setFilteredProducts(updatedProducts);
       }
@@ -104,8 +106,11 @@ const Shop = () => {
     let sortedProducts = [...filteredProducts];
 
     switch (sortValue) {
+      case "latest":
+        sortedProducts.sort((a, b) => a.createdAt - b.createdAt);
+        break;
       case "featured":
-        sortedProducts.sort((a, b) => b.isFeatured - a.isFeatured);
+        sortedProducts.sort((a, b) => b.featured - a.featured);
         break;
       case "priceasc":
         sortedProducts.sort((a, b) => a.price - b.price);
@@ -114,15 +119,16 @@ const Shop = () => {
         sortedProducts.sort((a, b) => b.price - a.price);
         break;
       case "alphaasc":
-        sortedProducts.sort((a, b) => a.name.localeCompare(b.name));
+        sortedProducts.sort((a, b) => a.title.localeCompare(b.title));
         break;
       case "alphadsc":
-        sortedProducts.sort((a, b) => b.name.localeCompare(a.name));
+        sortedProducts.sort((a, b) => b.title.localeCompare(a.title));
         break;
       default:
         break;
     }
     setFilteredProducts(sortedProducts);
+    refetch();
   };
 
   return (
@@ -163,8 +169,8 @@ const Shop = () => {
                         onChange={(e) => handleSort(e.target.value)}
                         className="text-[#666] bg-white font-medium leading-[16px] pl-[3px] py-2 pr-8 text-sm outline-none !rounded-[5px]"
                       >
+                        <option value="latest">Newest Items</option>
                         <option value="featured">Featured Items</option>
-                        <option value="newest">Newest Items</option>
                         <option value="bestselling">Best Selling</option>
                         <option value="alphaasc">A to Z</option>
                         <option value="alphadsc">Z to A</option>
@@ -176,22 +182,31 @@ const Shop = () => {
                   </form>
                 </div>
               </div>
-              {filteredProducts.length === 0 ? (
-                <div className="flex flex-col items-center justify-center h-64 border border-[#e5e5e5]">
-                  <h2 className="text-lg font-semibold text-gray-600 mb-2">
-                    No Products Available
-                  </h2>
-                  <p className="text-gray-500">
-                    It seems we can’t find any products matching your criteria.
-                  </p>
-                  <p className="text-gray-500">
-                    Please try adjusting your filters or check back later.
-                  </p>
+              {isLoading ? (
+                <div className="flex justify-center items-center min-h-[calc(20vh-44px)]">
+                  <Loading padding="100px" classes="w-16 h-16" />
                 </div>
-              ) : isGrid ? (
-                <GridViewProducts filteredProducts={filteredProducts} />
               ) : (
-                <ListViewProducts filteredProducts={filteredProducts} />
+                <div>
+                  {filteredProducts?.length === 0 ? (
+                    <div className="flex flex-col items-center justify-center h-64 border border-[#e5e5e5]">
+                      <h2 className="text-lg font-semibold text-gray-600 mb-2">
+                        No Products Available
+                      </h2>
+                      <p className="text-gray-500">
+                        It seems we can’t find any products matching your
+                        criteria.
+                      </p>
+                      <p className="text-gray-500">
+                        Please try adjusting your filters or check back later.
+                      </p>
+                    </div>
+                  ) : isGrid ? (
+                    <GridViewProducts filteredProducts={filteredProducts} />
+                  ) : (
+                    <ListViewProducts filteredProducts={filteredProducts} />
+                  )}
+                </div>
               )}
             </div>
           </div>

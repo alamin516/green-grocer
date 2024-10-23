@@ -1,39 +1,35 @@
 import { ArrowDropDown, Close } from "@mui/icons-material";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 const ProductSEO = ({ productData, setProductData }) => {
   const [open, setOpen] = useState(true);
-  const [seoData, setSeoData] = useState({
-    title: productData?.seo?.title || "",
-    meta_description: productData?.seo?.meta_description || "",
-    meta_keywords: productData?.seo?.meta_keywords || [],
-    meta_image: {
-      url: productData?.seo?.meta_image?.url || "",
-      alt: productData?.seo?.meta_image?.alt || "",
-    },
-  });
-  const [imagePreview, setImagePreview] = useState(seoData.meta_image.url);
-
-  useEffect(() => {
-    setProductData((prev) => ({
-      ...prev,
-      seo: seoData,
-    }));
-  }, [setProductData, seoData]);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setSeoData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+  
+    setProductData((prev) => {
+      if (name === "alt") {
+        return {
+          ...prev,
+          meta_image: {
+            ...prev.meta_image,
+            alt: value,
+          },
+        };
+      }
+      return {
+        ...prev,
+        [name]: value,
+      };
+    });
   };
+  
 
   const handleKeywordAdd = (e) => {
     if (e.key === "Enter" && e.target.value.trim()) {
       const newKeyword = e.target.value.trim();
-      if (!seoData.meta_keywords.includes(newKeyword)) {
-        setSeoData((prev) => ({
+      if (!productData.meta_keywords.includes(newKeyword)) {
+        setProductData((prev) => ({
           ...prev,
           meta_keywords: [...prev.meta_keywords, newKeyword],
         }));
@@ -43,7 +39,7 @@ const ProductSEO = ({ productData, setProductData }) => {
   };
 
   const handleKeywordRemove = (keyword) => {
-    setSeoData((prev) => ({
+    setProductData((prev) => ({
       ...prev,
       meta_keywords: prev.meta_keywords.filter((k) => k !== keyword),
     }));
@@ -54,14 +50,13 @@ const ProductSEO = ({ productData, setProductData }) => {
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
-        setSeoData((prev) => ({
+        setProductData((prev) => ({
           ...prev,
           meta_image: {
             ...prev.meta_image,
             url: reader.result,
           },
         }));
-        setImagePreview(reader.result);
       };
       reader.readAsDataURL(file);
     }
@@ -69,7 +64,6 @@ const ProductSEO = ({ productData, setProductData }) => {
 
   return (
     <div className="mb-2 bg-white p-6 rounded-md">
-      {/* Header with Expand/Collapse */}
       <div
         className="flex justify-between items-center gap-5 cursor-pointer transition-all ease-in-out duration-300"
         onClick={() => setOpen(!open)}
@@ -97,7 +91,7 @@ const ProductSEO = ({ productData, setProductData }) => {
             type="text"
             id="seo-title"
             name="title"
-            value={seoData.title}
+            value={productData.title}
             onChange={handleInputChange}
             placeholder="Enter SEO title"
             className="w-full px-3 py-2 border border-gray-300 rounded-lg"
@@ -112,7 +106,7 @@ const ProductSEO = ({ productData, setProductData }) => {
           <textarea
             id="meta-description"
             name="meta_description"
-            value={seoData.meta_description}
+            value={productData.meta_description}
             onChange={handleInputChange}
             placeholder="Enter meta description"
             rows="4"
@@ -126,7 +120,7 @@ const ProductSEO = ({ productData, setProductData }) => {
             Meta Keywords (Press Enter to add)
           </label>
           <div className="flex items-center gap-2 flex-wrap border border-gray-300 rounded-lg p-2">
-            {seoData.meta_keywords.map((keyword, index) => (
+            {productData.meta_keywords.map((keyword, index) => (
               <span
                 key={index}
                 className="bg-blue-100 text-blue-600 px-3 py-1 rounded-full flex items-center gap-2"
@@ -163,11 +157,11 @@ const ProductSEO = ({ productData, setProductData }) => {
             onChange={handleMetaImageChange}
             className="w-full px-3 py-2 border border-gray-300 rounded-lg"
           />
-          {imagePreview && (
+          {productData.meta_image?.url && (
             <div className="mt-3">
               <img
-                src={imagePreview}
-                alt={seoData.meta_image.alt || "Meta Image Preview"}
+                src={productData.meta_image?.url}
+                alt={productData.meta_image.alt || "Meta Image Preview"}
                 className="w-full h-auto max-h-64 object-contain rounded-lg"
               />
             </div>
@@ -183,7 +177,7 @@ const ProductSEO = ({ productData, setProductData }) => {
             type="text"
             id="meta-image-alt"
             name="alt"
-            value={seoData.meta_image.alt}
+            value={productData?.meta_image?.alt}
             onChange={handleInputChange}
             placeholder="Enter alt text for the meta image"
             className="w-full px-3 py-2 border border-gray-300 rounded-lg"

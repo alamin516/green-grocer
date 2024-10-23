@@ -1,6 +1,11 @@
-/* .featured-product-slider .slick-slide {
-    padding: 0px 15px;
-  } */
+.slick-track {
+  position: relative;
+  top: 0;
+  left: 0;
+  display: block;
+  margin-left: 0;
+  margin-right: auto;
+}
   
   .featured-product-slider .product-slider-arrow {
     position: absolute;

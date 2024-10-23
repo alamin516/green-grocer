@@ -188,7 +188,7 @@ const QuickViewProduct = ({ product, openQuickView, setOpenQuickView }) => {
                   /> */}
 
                   <ImageMagnifier
-                    src={product.images[previewImage].src}
+                    src={`${product.images[previewImage].url}`}
                     magnifierHeight={100}
                     magnifierWidth={100}
                     zoomLevel={2}
@@ -209,8 +209,8 @@ const QuickViewProduct = ({ product, openQuickView, setOpenQuickView }) => {
                               ? "border-[#111]"
                               : "border-[#e5e5e5]"
                           } border transition-all duration-300 ease-in-out `}
-                          src={image.src}
-                          alt=""
+                          src={`${image.url}`}
+                          alt={image.alt}
                         />
                       </div>
                     );
@@ -218,8 +218,8 @@ const QuickViewProduct = ({ product, openQuickView, setOpenQuickView }) => {
                 </Slider>
               </div>
               <div className="lg:col-span-3 p-5">
-                <h2 className="text-2xl font-bold mb-3">{product.name}</h2>
-                <p className="text-gray-700 mb-5">{product.description}</p>
+                <h2 className="text-2xl font-bold mb-3">{product.title}</h2>
+                <p className="text-gray-700 mb-5">{product?.short_description}</p>
                 <div className="flex items-center mb-5">
                   <span className="text-lg font-semibold text-red-500 mr-2">
                     ${product.price}

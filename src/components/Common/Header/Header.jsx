@@ -167,28 +167,10 @@ const Header = () => {
                 </div>
                 <div className="mx-2 group">
                   <Link
-                    to="/about"
+                    to="/today-deal"
                     className="relative z-[1] block px-5 py-3 m-0 text-white text-sm leading-[18px] font-semibold capitalize transition-all duration-500 ease-in-out group-hover:text-white group-hover:bg-[#fa9f00]"
                   >
-                    About us
-                    <span className="absolute left-0 top-0 h-full w-0 bg-white opacity-20 duration-500 transition-all group-hover:w-full"></span>
-                  </Link>
-                </div>
-                <div className="mx-2 group">
-                  <Link
-                    to="/contact"
-                    className="relative z-[1] block px-5 py-3 m-0 text-white text-sm leading-[18px] font-semibold capitalize transition-all duration-500 ease-in-out group-hover:text-white group-hover:bg-[#fa9f00]"
-                  >
-                    Contact us
-                    <span className="absolute left-0 top-0 h-full w-0 bg-white opacity-20 duration-500 transition-all group-hover:w-full"></span>
-                  </Link>
-                </div>
-                <div className="mx-2 group">
-                  <Link
-                    to="/"
-                    className="relative z-[1] block px-5 py-3 m-0 text-white text-sm leading-[18px] font-semibold capitalize transition-all duration-500 ease-in-out group-hover:text-white group-hover:bg-[#fa9f00]"
-                  >
-                    More
+                    Today's Deal
                     <span className="absolute left-0 top-0 h-full w-0 bg-white opacity-20 duration-500 transition-all group-hover:w-full"></span>
                   </Link>
                 </div>

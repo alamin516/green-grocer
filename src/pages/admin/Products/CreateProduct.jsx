@@ -9,15 +9,19 @@ import toast from "react-hot-toast";
 import Loading from "../../../components/Loading/Loading";
 import ProductSpecifications from "../../../components/Admin/Product/ProductSpecifications";
 import ProductImages from "../../../components/Admin/Product/ProductImages";
+import { useNavigate } from "react-router-dom";
+import TextEditor from "../../../utils/TextEditor";
 
 const CreateProduct = () => {
+  const navigate = useNavigate();
   const [createProduct, { data, isLoading, isSuccess, error }] =
     useCreateProductMutation();
   const [productData, setProductData] = useState({
     title: "",
     long_description: "",
     short_description: "",
-    price: "",
+    price: 0,
+    discount_price: 0,
     stock_quantity: 0,
     category: [],
     tags: [],
@@ -25,28 +29,47 @@ const CreateProduct = () => {
     status: "",
     stock_status: "in_stock",
     type: "simple",
-    images: [],
-    specification: [],
   });
+
+  const [imageData, setImageData] = useState([
+    {
+      url: "",
+      alt: "",
+    },
+  ]);
+
+  const [seoData, setSeoData] = useState({
+    title: "",
+    meta_description: "",
+    meta_keywords: [],
+    meta_image: {
+      url: "",
+      alt: "",
+    },
+  });
+
+  const [specificationData, setSpecificationData] = useState([
+    { key: "", value: "" },
+  ]);
 
   const validateProductData = () => {
     const { title, price, stock_quantity } = productData;
 
     if (!title.trim()) return "Product title is required.";
     if (isNaN(price) || price <= 0) return "Price is required";
-    if (!Number.isInteger(stock_quantity) || stock_quantity < 0)
-      return "Stock quantity cannot be negative.";
+    if (stock_quantity < 0) return "Stock quantity cannot be negative.";
     return null;
   };
 
   useEffect(() => {
-    if (isSuccess) {
+    if (data) {
       toast.success(data?.message);
+      navigate(`/admin/edit-product/${data?.data?._id}`);
     }
     if (error) {
       toast.success(error.data.message);
     }
-  }, [isSuccess, error, data]);
+  }, [isSuccess, error, data, navigate]);
 
   const handleChange = (e) => {
     setProductData({ ...productData, [e.target.name]: e.target.value });
@@ -59,7 +82,26 @@ const CreateProduct = () => {
         toast.error(error);
         return;
       }
-      await createProduct({ ...productData, status: status });
+
+      const newProduct = {
+        title: productData.title,
+        long_description: productData.long_description,
+        short_description: productData.short_description,
+        price: productData.price,
+        discount_price: productData.discount_price,
+        stock_quantity: productData.stock_quantity,
+        category: productData.category,
+        tags: productData.tags,
+        brand: productData.brand,
+        stock_status: productData.stock_status,
+        type: productData.type,
+        status: status,
+        seo: seoData,
+        images: imageData,
+        specification: specificationData,
+      };
+
+      await createProduct(newProduct);
     } catch (error) {
       console.log(error);
     }
@@ -78,26 +120,50 @@ const CreateProduct = () => {
       <div className="flex max-992px:flex-col gap-6">
         {/* Main Product Data Section */}
         <div className="lg:w-[calc(100%-320px)]">
+          
+          <div className="mb-2 bg-white p-6 rounded-md">
+            <label className="block font-medium mb-2">Product Title</label>
+            <input
+              type="text"
+              name="title"
+              className="w-full border rounded-md px-4 py-2"
+              placeholder="Enter product title"
+              value={productData.title}
+              onChange={handleChange}
+            />
+          </div>
+
+          <TextEditor
+            productData={productData}
+            setProductData={setProductData}
+            title="Long Description"
+            dataKey="long_description"
+          />
+
           <ProductData
             handleChange={handleChange}
             productData={productData}
             setProductData={setProductData}
           />
 
-          <ProductImages
+          <TextEditor
             productData={productData}
             setProductData={setProductData}
+            title="Short Description"
+            dataKey="short_description"
+          />
+
+          <ProductImages
+            productData={imageData}
+            setProductData={setImageData}
           />
 
           <ProductSpecifications
-            productData={productData}
-            setProductData={setProductData}
+            specificationData={specificationData}
+            setSpecificationData={setSpecificationData}
           />
 
-          <ProductSEO
-            productData={productData}
-            setProductData={setProductData}
-          />
+          <ProductSEO productData={seoData} setProductData={setSeoData} />
         </div>
 
         {/* Sidebar Options */}

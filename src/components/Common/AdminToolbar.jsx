@@ -7,10 +7,13 @@ import {
   ExitToApp,
   Menu as MenuIcon,
 } from "@mui/icons-material";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const AdminToolbar = () => {
   const [openProfile, setOpenProfile] = useState(false);
+  const location = useLocation();
+
+
 
   return (
     <header className="bg-slate-700 shadow-md sticky top-0 w-full z-[9999]">

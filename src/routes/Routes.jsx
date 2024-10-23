@@ -31,6 +31,10 @@ import AllUsers from "../pages/admin/Users/AllUsers";
 import Products from "../pages/admin/Products/Products";
 import ProductSingle from "../pages/client/Products/ProductSingle.jsx";
 import CreateProduct from "../pages/admin/Products/CreateProduct.jsx";
+import UpdateProduct from "../pages/admin/Products/UpdateProduct.jsx";
+import CreateCategory from "../pages/admin/PCategory/CreateCategory.jsx";
+import AllCategories from "../pages/admin/PCategory/AllCategories.jsx";
+import TodayDeal from "../pages/client/TodayDeal/TodayDeal.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -56,6 +60,10 @@ export const router = createBrowserRouter([
       {
         path: "/shop",
         element: <Shop />,
+      },
+      {
+        path: "/today-deal",
+        element: <TodayDeal />,
       },
       {
         path: "/cart",
@@ -170,8 +178,16 @@ export const router = createBrowserRouter([
         element: <CreateProduct />,
       },
       {
-        path: "update-product:id",
-        element: <CreateProduct />,
+        path: "edit-product/:id",
+        element: <UpdateProduct />,
+      },
+      {
+        path: "product/categories",
+        element: <AllCategories/>,
+      },
+      {
+        path: "product/create-category",
+        element: <CreateCategory/>,
       },
       {
         path: "users",
@@ -185,6 +201,10 @@ export const router = createBrowserRouter([
   },
   {
     path: "*",
+    element: <NotFound />,
+  },
+  {
+    path: "/error-page",
     element: <NotFound />,
   },
 ]);
